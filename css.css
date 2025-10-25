@@ -25,6 +25,8 @@ header {
 .side-navbar ul,
 .side-navbar ul li {
     display: flex;
+    align-items: center;
+    min-width: 100px;
     flex-direction: column;
 }
 
@@ -35,6 +37,7 @@ header {
 
 .side-navbar ul {
     height: inherit;
+    padding: 0;
 }
 
 .side-navbar li{
@@ -48,6 +51,7 @@ header {
 
 .side-navbar #admin{
     color: red;
+    align-self: flex-end;
 }
 
 .footer-nav {
@@ -65,7 +69,6 @@ header {
 .footer-nav li{
     list-style-type: none;
     margin: 10px;
-    border: 1px solid black;
 }
 
 .footer-nav li img{
