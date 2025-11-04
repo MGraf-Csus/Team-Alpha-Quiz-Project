@@ -8,7 +8,7 @@
     <script src="admin.js"></script>
 </head>
 
-<header>   
+<header>
     <div class="header-content">
         <H1>Quiz Application</H1>
     </div>
@@ -26,11 +26,14 @@
             </ul>
         </div>
         <div class="main-body" id="contact-body">
-            <h2 class="page-titles">Admin Sign In:</h2>
+            <h2 class="page-titles">Admin Control Panel:</h2>
             <ul>
-                <li><label for="username">Username:</label><input type="text" id="username" name="username" placeholder="Enter your username"></li>
-                <li><label for="password">Password:</label><input type="text" id="password" name="password" placeholder="Enter your password"></li>
-                <li><button type="button" id="sign-in-button" onclick="signIn()">Sign in</button></li>
+                <li><button>Create Quiz</button></li>
+                <li><button>Edit Quiz</button></li>
+                <li><button>Get Quiz</button></li>
+                <li><button>Delete Quiz</button></li>
+
+                <li><button type="button" onclick="window.location.href='AdminSign-in.html'">Log Out</button></li>
             </ul>
         </div>
     </div>
@@ -50,6 +53,6 @@
         <div class="copyright">
             <p>&copy; Team Alpha, CSC 131, Fall 2025. All rights reserved.</p>
         </div>
-        
+
     </div>
 </footer>
