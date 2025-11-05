@@ -9,6 +9,9 @@ export class BackendExtensionService {
 
     // -------------------- Account Methods --------------------
 
+    // Keep in mind the database has two collections (Folders) users and quizzes by default and within
+    // those collections have documents (In the form of js objects) 
+
     // Sign in by checking email and password in 'users' collection
     async signIn(username, password) {
         return await signInUsernamePassword(username, password);
@@ -105,10 +108,4 @@ export class BackendExtensionService {
         quiz.studentScores = studentScores;
         let test = new Quiz(true);
     }
-
 }
-
-let service = new BackendExtensionService();
-// await service.signIn("test@test.com", "12345678");
-// await service.createQuiz(new Quiz(true));
-// service.convertToQuiz(await service.getQuiz('QuizId1'));

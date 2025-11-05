@@ -1,6 +1,5 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/12.5.0/firebase-app.js";
 import { getFirestore, doc, setDoc, deleteDoc, getDoc } from "https://www.gstatic.com/firebasejs/12.5.0/firebase-firestore.js";
-import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from "https://www.gstatic.com/firebasejs/12.5.0/firebase-auth.js";
 
 // --- Firebase config (DON"T TOUCH IT) ---
 const firebaseConfig = {
@@ -16,7 +15,6 @@ const firebaseConfig = {
 // --- Initialize Firebase ---
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
-const auth = getAuth(app);
 
 // --- Logging Method (Don't Touch) ---
 function logResult(action, collection, docId, data = "") {
@@ -25,16 +23,12 @@ function logResult(action, collection, docId, data = "") {
 
 // --- Account Methods ---
 
-// Sign in using Firebase Auth
 async function signInUsernamePassword(username, password) {
     try {
         const docSnap = await getDoc(doc(db, 'users', username));
-        if (!docSnap.exists()) {
-            throw new Error("User doesn't exists.");
-        }
-        const fakeEmail = `${username}@domain.com`;
-        await signInWithEmailAndPassword(auth, fakeEmail, password);
-        console.log("✅ Signed in succesfully");
+        if (!docSnap.exists()) throw new Error("User doesn't exist.");
+        if (docSnap.data().password !== password) throw new Error("Incorrect Password");
+        console.log("✅ Signed in successfully");
         return getDocumentData('users', username);
     } catch (error) {
         console.error("❌ Error signing in:", error);
@@ -42,48 +36,53 @@ async function signInUsernamePassword(username, password) {
     }
 }
 
-// Sign out using Firebase Auth
-async function signOutUser() {
-    try {
-        await signOut(auth);
-        console.log("✅ User signed out successfully");
-        return true;
-    } catch (error) {
-        console.error("❌ Error signing out:", error);
-        return false;
-    }
-}
-
-// Create account using Firebase Auth
 async function createAccountWithUsernamePassword(adminId, username, password, role) {
-    let effectiveAdminId = adminId;
     try {
-        const fakeEmail = `${username}@domain.com`;
-        await createUserWithEmailAndPassword(auth, fakeEmail, password);
-        await addDocument("users", username, {adminId: effectiveAdminId, username, role});
+        const docSnap = await getDoc(doc(db, 'users', username));
+        if (docSnap.exists()) throw new Error("User already exists.");
+        await addDocument("users", username, { adminId, username, password, role });
+        console.log("✅ Created accound");
         return true;
     } catch (error) {
-        const docSnap = await getDoc(doc(db, 'users', username));
-        if (error.code === 'auth/email-already-in-use' && !docSnap.exists()) {
-            await addDocument("users", username, {adminId: effectiveAdminId, username, role});
-            return true;
-        }
         console.error("❌ Error creating account:", error);
         return false;
     }
 }
 
-
-// Delete account using Firebase Auth
 async function deleteAccount(username) {
     try {
         const docSnap = await getDoc(doc(db, 'users', username));
-        if (!docSnap.exists()) {
-            throw new Error("User doesn't exist");
-        }
+        if (!docSnap.exists()) throw new Error("User doesn't exist");
         await deleteDocument('users', username);
+        console.log("✅ Account deleted succefully", error);
+        return true;
     } catch (error) {
-        console.error(error);
+        console.error("❌ Error deleting account:", error);
+        return false;
+    }
+}
+
+async function getAccount(username) {
+    try {
+        const docSnap = await getDoc(doc(db, 'users', username));
+        if (!docSnap.exists()) throw new Error("User doesn't exist");
+        console.log("✅ Account retrieved successfully");
+        return docSnap.data();
+    } catch (error) {
+        console.error("❌ Error retrieving account:", error);
+        return false;
+    }
+}
+
+async function editAccount(username, updates = null) {
+    try {
+        const docSnap = await getDoc(doc(db, 'users', username));
+        if (!docSnap.exists()) throw new Error("User doesn't exist");
+        if (updates != null) await updateDoc(doc(db, 'users', username), updates);
+        console.log("✅ Account edited successfully");
+        return true;
+    } catch (error) {
+        console.error("❌ Error editing account:", error);
         return false;
     }
 }
@@ -190,8 +189,10 @@ async function getDocumentDataField(collection, docId, field) {
 
 export {
     signInUsernamePassword,
-    signOutUser,
     createAccountWithUsernamePassword,
+    deleteAccount,
+    getAccount,
+    editAccount,
     addEmptyDocument,
     addDocument,
     deleteDocument,
