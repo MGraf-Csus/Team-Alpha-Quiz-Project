@@ -1,5 +1,21 @@
 import { signInUsernamePassword, createAccountWithUsernamePassword, addDocument, deleteDocument, saveDocument, getDocumentData } from "./FirebaseHandler.js"
-import { Quiz, Item, StudentScore } from './Quiz.js';
+import { Quiz } from './Quiz.js';
+
+
+
+
+// ---------------------- IMPORTANT CREATE THE ITEM AND STUDENTSCORE CLASSES THEN UNCOMMENT THOSE IMPORTS ---------------------- //
+// -------------------- OTHERWISE THE GET QUIZ FUNCTION WILL EXPLODE INTO A MILLION PIECES SPONGEBOB STYLE --------------------- //
+
+
+// import { Item } './Item';
+// import { StudentScore } './StudentScore';
+
+
+
+
+
+
 
 export class BackendExtensionService {
 
@@ -10,7 +26,7 @@ export class BackendExtensionService {
     // -------------------- Account Methods --------------------
 
     // Keep in mind the database has two collections (Folders) users and quizzes by default and within
-    // those collections have documents (In the form of js objects) 
+    // those collections have documents (In the form of js objects).
 
     // Sign in by checking email and password in 'users' collection
     async signIn(username, password) {
