@@ -1,13 +1,13 @@
 import { signInUsernamePassword, createAccountWithUsernamePassword, addDocument, deleteDocument, saveDocument, getDocumentData } from "./FirebaseHandler.js"
-import { Quiz } from './Quiz.js';
 
 
 
 
-// ---------------------- IMPORTANT CREATE THE ITEM AND STUDENTSCORE CLASSES THEN UNCOMMENT THOSE IMPORTS ---------------------- //
+
+// ------------------ IMPORTANT CREATE THE ITEM, STUDENTSCORE, and QUIZ CLASSES THEN UNCOMMENT THOSE IMPORTS ------------------- //
 // -------------------- OTHERWISE THE GET QUIZ FUNCTION WILL EXPLODE INTO A MILLION PIECES SPONGEBOB STYLE --------------------- //
 
-
+// import { Quiz } from './Quiz.js';
 // import { Item } './Item';
 // import { StudentScore } './StudentScore';
 
