@@ -1,27 +1,15 @@
 import { signInUsernamePassword, createAccountWithUsernamePassword, addDocument, deleteDocument, saveDocument, getDocumentData } from "./FirebaseHandler.js"
-import { Quiz } from './Quiz.js';
 
-
-
-
-// ---------------------- IMPORTANT CREATE THE ITEM AND STUDENTSCORE CLASSES THEN UNCOMMENT THOSE IMPORTS ---------------------- //
+// ------------------ IMPORTANT CREATE THE ITEM, STUDENTSCORE, AND QUIZ CLASSES THEN UNCOMMENT THOSE IMPORTS ------------------- //
 // -------------------- OTHERWISE THE GET QUIZ FUNCTION WILL EXPLODE INTO A MILLION PIECES SPONGEBOB STYLE --------------------- //
 
-
+// import { Quiz } from './Quiz.js';
 // import { Item } './Item';
 // import { StudentScore } './StudentScore';
 
-
-
-
-
-
-
 export class BackendExtensionService {
 
-    constructor(db) {
-        this.db = db;
-    }
+    constructor() {}
 
     // -------------------- Account Methods --------------------
 
@@ -33,7 +21,6 @@ export class BackendExtensionService {
         return await signInUsernamePassword(username, password);
     }
 
-    // Create a new account under 'users'
     async createAccount(adminId, username, password, role) {
         return await createAccountWithUsernamePassword(adminId, username, password, role);
     }
@@ -53,7 +40,6 @@ export class BackendExtensionService {
     // -------------------- Quiz Methods --------------------
 
     async createQuiz(quiz) {
-        // console.log(this.#parseQuizForDatabase(quiz));
         console.log(quiz);
         return await addDocument("quizzes", quiz.id, this.#parseQuizForDatabase(quiz));
     }
@@ -75,7 +61,7 @@ export class BackendExtensionService {
         }
     }
 
-    // -------------------------- "Magic" Helper Functions for other methods --------------------------
+    // -------------------------- "Magic" Helper Functions for other methods -------------------------- //
     // Quiz method Helper funcitons for parsing quiz to be saved to DB
     #parseQuizForDatabase(quiz) {
 
@@ -86,7 +72,7 @@ export class BackendExtensionService {
         const studentScoresAsObject = Object.fromEntries(
             quiz.studentScores.map(studentScore => [studentScore.studentId, studentScore.score])
         );
-        
+
         return {
             title: "temp",
             description: "Description goes here",
