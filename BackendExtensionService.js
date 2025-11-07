@@ -7,9 +7,9 @@ import { signInUsernamePassword, createAccountWithUsernamePassword, addDocument,
 // ------------------ IMPORTANT CREATE THE ITEM, STUDENTSCORE, and QUIZ CLASSES THEN UNCOMMENT THOSE IMPORTS ------------------- //
 // -------------------- OTHERWISE THE GET QUIZ FUNCTION WILL EXPLODE INTO A MILLION PIECES SPONGEBOB STYLE --------------------- //
 
-// import { Quiz } from './Quiz.js';
-// import { Item } './Item';
-// import { StudentScore } './StudentScore';
+import { Quiz } from './Quiz.js';
+import { Item } from './Item.js';
+import { StudentScore } from './StudentScore.js';
 
 
 
@@ -100,7 +100,7 @@ export class BackendExtensionService {
         return {
             question: item.question,
             choices: this.#arrayToObject(item.choices),
-            answer: item.answer
+            correctAnswer: item.correctAnswer
         };
     }
     #arrayToObject(array) {
