@@ -169,6 +169,19 @@ async function getDocumentData(collection, docId) {
     }
 }
 
+async function getDocumentIDS(collection) {
+    try {
+        const querySnapshot = await getDocs(collection(db, collection));
+        const docIds = querySnapshot.docs.map(doc => doc.id);
+        console.log(docIds);
+        return docIds;
+
+    } catch (error) {
+        console.error(error);
+        return null;
+    }
+}
+
 // Retrieves a single field from a document
 // Returns the value of the requested field or null if it does not exist
 async function getDocumentDataField(collection, docId, field) {
@@ -186,6 +199,8 @@ async function getDocumentDataField(collection, docId, field) {
         console.error(`[❌ Error Getting Field]:`, error);
     }
 }
+
+console.log("hello");
 
 export {
     signInUsernamePassword,

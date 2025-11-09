@@ -1,23 +1,10 @@
 import { signInUsernamePassword, createAccountWithUsernamePassword, addDocument, deleteDocument, saveDocument, getDocumentData } from "./FirebaseHandler.js"
-
-
-
-
-
-// ------------------ IMPORTANT CREATE THE ITEM, STUDENTSCORE, and QUIZ CLASSES THEN UNCOMMENT THOSE IMPORTS ------------------- //
-// -------------------- OTHERWISE THE GET QUIZ FUNCTION WILL EXPLODE INTO A MILLION PIECES SPONGEBOB STYLE --------------------- //
-
 // import { Quiz } from './Quiz.js';
-// import { Item } './Item';
-// import { StudentScore } './StudentScore';
-
-
-
-
-
-
+// import { Item } from './Item';
+// import { StudentScore } from './StudentScore';
 
 export class BackendExtensionService {
+    test = 1;
 
     constructor() {}
 
@@ -60,17 +47,29 @@ export class BackendExtensionService {
         return await saveDocument("quizzes", quizId, this.#parseQuizForDatabase(quiz));
     }
 
+
+
+    async takinQuiz() {
+
+    }
+    async manageQuiz() {
+
+    }
+    async getAllUserIDS() {
+
+    }
+    async getAllQuizeIDS() {
+        
+    }
+ 
+
+
     async getQuiz(quizId) {
         return this.#convertToQuiz(await getDocumentData("quizzes", quizId));
     }
 
     async deleteQuiz(quizId) {
-        try {
-            await deleteDocument("quizzes", quizId);
-            return true;
-        } catch {
-            return false;
-        }
+        return await deleteDocument("quizzes", quizId);
     }
 
     // -------------------------- "Magic" Helper Functions for other methods --------------------------
@@ -100,7 +99,7 @@ export class BackendExtensionService {
         return {
             question: item.question,
             choices: this.#arrayToObject(item.choices),
-            answer: item.answer
+            correctAnswer: item.correctAnswer
         };
     }
     #arrayToObject(array) {
@@ -120,6 +119,5 @@ export class BackendExtensionService {
         quiz.timerLength = parsedQuiz.timerLength;
         quiz.numQuestions = parsedQuiz.numQuestions;
         quiz.studentScores = studentScores;
-        let test = new Quiz(true);
     }
 }

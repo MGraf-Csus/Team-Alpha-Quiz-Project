@@ -1,6 +1,5 @@
 var testDone = false;
 
-
 function timer() {
     // Set the date we're counting down to
     var time = new Date();
@@ -91,3 +90,7 @@ function submitExam() {
     } 
 
 }
+
+window.timer = timer;
+window.answer = answer;
+window.submitExam = submitExam;
