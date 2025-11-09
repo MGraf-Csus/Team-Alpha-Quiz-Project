@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Sign In</title>
     <link rel="stylesheet" href="css.css">
-    <script src="admin.js"></script>
 </head>
 
 <header>
@@ -28,7 +27,7 @@
         <div class="main-body" id="contact-body">
             <h2 class="page-titles">Admin Control Panel:</h2>
             <ul>
-                <li><button>Create Quiz</button></li>
+                <li><button  type="button" onclick="window.location.href='CreateQuiz.html'">Create Quiz</button></li>
                 <li><button>Edit Quiz</button></li>
                 <li><button>Get Quiz</button></li>
                 <li><button>Delete Quiz</button></li>
@@ -40,5 +39,19 @@
 </section>
 
 <footer>
-    <iframe src="footer.html" onload="this.before(...(this.contentWindow.document.body||this.contentWindow.document).children);this.remove()"></iframe>
+    <div class="footer-content">
+        <nav class="footer-nav">
+            <ul>
+                <li><a href="https://www.facebook.com/"><img src="images\Facebook.png" alt="Facebook"></a></li>
+                <li><a href="https://www.linkedin.com/"><img src="images\LinkedIn.png" alt="LinkedIn"></a></li>
+                <li><a href="https://x.com/"><img src="images\XLogo.png" alt="X"></a></li>
+                <li><a href="https://www.instagram.com/?hl=en"><img src="images\Instagram.png" alt="Instagram"></a></li>
+                <li><a href="https://github.com/"><img src="images\GitHub.png" alt="GitHub"></a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            <p>&copy; Team Alpha, CSC 131, Fall 2025. All rights reserved.</p>
+        </div>
+
+    </div>
 </footer>

@@ -1,7 +1,15 @@
 import { signInUsernamePassword, createAccountWithUsernamePassword, addDocument, deleteDocument, saveDocument, getDocumentData } from "./FirebaseHandler.js"
-// import { Quiz } from './Quiz.js';
-// import { Item } from './Item';
-// import { StudentScore } from './StudentScore';
+
+
+
+// ------------------ IMPORTANT CREATE THE ITEM, STUDENTSCORE, and QUIZ CLASSES THEN UNCOMMENT THOSE IMPORTS ------------------- //
+// -------------------- OTHERWISE THE GET QUIZ FUNCTION WILL EXPLODE INTO A MILLION PIECES SPONGEBOB STYLE --------------------- //
+
+import { Quiz } from './Quiz.js';
+import { Item } from './Item.js';
+import { StudentScore } from './StudentScore.js';
+
+
 
 export class BackendExtensionService {
     test = 1;

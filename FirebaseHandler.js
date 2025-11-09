@@ -41,7 +41,7 @@ async function createAccountWithUsernamePassword(adminId, username, password, ro
         const docSnap = await getDoc(doc(db, 'users', username));
         if (docSnap.exists()) throw new Error("User already exists.");
         await addDocument("users", username, { adminId, username, password, role });
-        console.log("✅ Created accound");
+        console.log("✅ Created account");
         return true;
     } catch (error) {
         console.error("❌ Error creating account:", error);
