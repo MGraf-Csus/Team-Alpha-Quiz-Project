@@ -1,5 +1,5 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/12.5.0/firebase-app.js";
-import { getFirestore, doc, setDoc, deleteDoc, getDoc } from "https://www.gstatic.com/firebasejs/12.5.0/firebase-firestore.js";
+import { getFirestore, doc, setDoc, deleteDoc, getDoc, getDocs, collection } from "https://www.gstatic.com/firebasejs/12.5.0/firebase-firestore.js";
 
 // --- Firebase config (DON"T TOUCH IT) ---
 const firebaseConfig = {
@@ -169,11 +169,12 @@ async function getDocumentData(collection, docId) {
     }
 }
 
-async function getDocumentIDS(collection) {
+// Retrieves all ID's in a collection
+// Returns all ID's of a collection and null if collectionName is invalid
+async function getDocumentIDS(collectionName) {
     try {
-        const querySnapshot = await getDocs(collection(db, collection));
+        const querySnapshot = await getDocs(collection(db, collectionName));
         const docIds = querySnapshot.docs.map(doc => doc.id);
-        console.log(docIds);
         return docIds;
 
     } catch (error) {
@@ -200,8 +201,6 @@ async function getDocumentDataField(collection, docId, field) {
     }
 }
 
-console.log("hello");
-
 export {
     signInUsernamePassword,
     createAccountWithUsernamePassword,
@@ -215,4 +214,5 @@ export {
     saveDocument,
     getDocumentData,
     getDocumentDataField,
+    getDocumentIDS,
 };
