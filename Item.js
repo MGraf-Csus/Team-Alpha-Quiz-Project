@@ -4,6 +4,16 @@ export class Item {
     correctAnswer;
 
     constructor(question, answerA, answerB, answerC, answerD, correctAnswer) {
+
+        // Added Case for when array of choices is passed easier for DB to handle when retrieving
+        if (Array.isArray(answerA)) {
+            this.question = question;
+            this.choices = answerA;
+            this.correctAnswer = answerB; // b holds the value for correctAnswer in this case already an int
+            return;
+        }
+
+        // Default case
         this.question = question;
         this.choices.push(answerA);
         this.choices.push(answerB);
