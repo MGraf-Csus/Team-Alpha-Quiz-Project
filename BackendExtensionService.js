@@ -1,10 +1,4 @@
-import { signInUsernamePassword, createAccountWithUsernamePassword, addDocument, deleteDocument, saveDocument, getDocumentData } from "./FirebaseHandler.js"
-
-
-
-// ------------------ IMPORTANT CREATE THE ITEM, STUDENTSCORE, and QUIZ CLASSES THEN UNCOMMENT THOSE IMPORTS ------------------- //
-// -------------------- OTHERWISE THE GET QUIZ FUNCTION WILL EXPLODE INTO A MILLION PIECES SPONGEBOB STYLE --------------------- //
-
+import { signInUsernamePassword, createAccountWithUsernamePassword, addDocument, deleteDocument, saveDocument, getDocumentData, getDocumentIDS } from "./FirebaseHandler.js"
 import { Quiz } from './Quiz.js';
 import { Item } from './Item.js';
 import { StudentScore } from './StudentScore.js';
@@ -46,8 +40,6 @@ export class BackendExtensionService {
     // -------------------- Quiz Methods --------------------
 
     async createQuiz(quiz) {
-        // console.log(this.#parseQuizForDatabase(quiz));
-        console.log(quiz);
         return await addDocument("quizzes", quiz.id, this.#parseQuizForDatabase(quiz));
     }
 
@@ -55,22 +47,16 @@ export class BackendExtensionService {
         return await saveDocument("quizzes", quizId, this.#parseQuizForDatabase(quiz));
     }
 
-
-
-    async takinQuiz() {
-
-    }
-    async manageQuiz() {
-
-    }
     async getAllUserIDS() {
-
+        return await getDocumentIDS("users");
     }
     async getAllQuizeIDS() {
-        
+        return await getDocumentIDS("quizzes");
     }
- 
 
+    async getQuizTakingView(quizId) {
+        return this.#setQuizQuestionsRandomToBeTakin(this.#convertToQuiz(await getDocumentData("quizzes", quizId)));
+    }
 
     async getQuiz(quizId) {
         return this.#convertToQuiz(await getDocumentData("quizzes", quizId));
@@ -118,7 +104,7 @@ export class BackendExtensionService {
     #convertToQuiz(parsedQuiz) {
         const quiz = new Quiz();
         const items = Object.values(parsedQuiz.items).map(obj =>
-            new Item(obj.question, Object.values(obj.choices), obj.answer)
+            new Item(obj.question, Object.values(obj.choices), obj.correctAnswer)
         );
         const studentScores = Object.entries(parsedQuiz.studentScores).map(([studentId, score]) => new StudentScore(studentId, score));
         quiz.ownerId = parsedQuiz.ownerId;
@@ -127,5 +113,22 @@ export class BackendExtensionService {
         quiz.timerLength = parsedQuiz.timerLength;
         quiz.numQuestions = parsedQuiz.numQuestions;
         quiz.studentScores = studentScores;
+        return quiz;
+    }
+
+    #setQuizQuestionsRandomToBeTakin(quiz) {
+        let numQuestionsToRemove = quiz.items.length - quiz.numQuestions;
+        while (numQuestionsToRemove > 0) {
+            let ranNum = this.#getRandomInt(0, quiz.items.length - 1);
+            console.log(ranNum);
+            quiz.items.splice(ranNum, 1);
+            numQuestionsToRemove--;
+        }
+        return quiz;
+    }
+    #getRandomInt(min, max) {
+        min = Math.ceil(min);
+        max = Math.floor(max);
+        return Math.floor(Math.random() * (max - min + 1)) + min;
     }
 }
