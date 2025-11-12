@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contact Us</title>
     <link rel="stylesheet" href="css.css">
+    <script src="contact.js"></script>
 </head>
 
 <header>   
@@ -27,13 +28,16 @@
         <div class="main-body" id="contact-body">
             <h2 class="page-titles">Contact Us:</h2>
             <ul>
+                <form action="https://formspree.io/f/xblqjvrp" method="POST">
                 <li><label for="username">Name:</label><input type="text" id="name" name="name" placeholder="Enter your name"></li>
                 <li><label for="email">Email:</label><input type="text" id="email" name="email" placeholder="Enter your email"></li>
-                <li><label for="phone-number">Phone Number:</label><input type="text" id="phone-number" name="phone-number" placeholder="Enter your phone number"></li>
+                <li><label for="phone-number">Phone Number:</label><input type="tel" id="phone-number" name="phone-number" placeholder="Enter your phone number"></li>
                 <li><label for="message">Message:</label></li>
                 <li id="admin"><textarea id="message" name="message" rows="5" cols="40" placeholder="Enter your message here..."></textarea></li>
-                <li><button type="button" id="send-message">Send Message</button></li>
+                <li><button type="submit" id="send-message">Send Message</button></li>
+                </form>
             </ul>
+
         </div>
     </div>
 </section>
