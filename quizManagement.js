@@ -2,10 +2,12 @@ import {BackendExtensionService} from "./BackendExtensionService.js";
 import {Item} from "./Item.js";
 import {Quiz} from "./Quiz.js";
 
-function addTableRow() {
+export function addTableRow() {
+    // getting and defining variable for table from html
     let table = document.getElementById("quizQuestionList");
     let row = table.insertRow(-1);
 
+    // define cells of table row
     let cell1 = row.insertCell(0);
     let cell2 = row.insertCell(1);
     let cell3 = row.insertCell(2);
@@ -13,6 +15,7 @@ function addTableRow() {
     let cell5 = row.insertCell(4);
     let cell6 = row.insertCell(5);
 
+    // filling cells with html for each of the input fields
     cell1.innerHTML = "<input type='text' size='15' id='Question' name='Question' placeholder='Enter question'>";
     cell2.innerHTML = "<input type='text' size='15' id='answerA' name='answerA' placeholder='Enter answer A'>";
     cell3.innerHTML = "<input type='text' size='15' id='answerB' name='answerB' placeholder='Enter answer B'>";
@@ -23,23 +26,26 @@ function addTableRow() {
 }
 
 let service = new BackendExtensionService();
-async function createNewQuiz() {
+export async function createNewQuiz() {
     // TEMP VALUE
     let ownerId = "1";
 
-
+    // defining each part of a Quiz object
     let id = document.getElementById("quizNameInput").value;
     let items = defineItems();
     let timerLength = document.getElementById("timerLengthInput").value;
     let numQuestions = document.getElementById("quizQuestionAmountInput").value;
     let studentScores = [];
 
+    // newQuiz object defined
     let newQuiz = new Quiz(ownerId, id, items, timerLength, numQuestions, studentScores)
 
+    // sending quiz to database
     console.log(newQuiz);
     await service.createQuiz(newQuiz);
 }
 function defineItems() {
+    // gather the input text from cell
     let questions = document.getElementsByName("Question");
     let answersA = document.getElementsByName("answerA");
     let answersB = document.getElementsByName("answerB");
@@ -47,6 +53,7 @@ function defineItems() {
     let answersD = document.getElementsByName("answerD");
     let correct = document.getElementsByName("correctAnswer");
     let items = [];
+    // iterate through each row and push each to array of quiz questions
     for (let i = 0; i < questions.length; i++) {
         items.push(new Item(questions[i].value, answersA[i].value, answersB[i].value, answersC[i].value, answersD[i].value, correct[i].value));
     }
@@ -54,7 +61,7 @@ function defineItems() {
 
 }
 
-async function listQuizzes() {
+export async function listQuizzes() {
     let docIds = await service.getAllQuizIDS()
 
     let table = document.getElementById("quizListTable");
@@ -85,13 +92,11 @@ async function listQuizzes() {
         cell4.innerHTML = quiz.getTimerLength();
         cell5.innerHTML = "<button onclick=\"window.location.href='EditQuiz.html'\">Edit</button>";
         cell6.innerHTML = "<button onclick='deleteQuiz(this)'>Delete</button>";
-
-
     }
 
 }
 
-function editQuiz(button) {
+export function editQuiz(button) {
     const row = button.closest('tr');
     const id = row.cells[0].textContent;
     let quiz = service.getQuiz(id);
@@ -99,7 +104,7 @@ function editQuiz(button) {
 
 }
 
-function deleteQuiz(button) {
+export function deleteQuiz(button) {
     const row = button.closest('tr');
     const id = row.cells[0].textContent;
     if(confirm("Are you sure you want to delete this quiz?")){
