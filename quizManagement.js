@@ -1,4 +1,4 @@
-import {BackendExtensionService} from "./BackendExtensionService.js";
+import {service} from "./BackendExtensionService.js";
 import {Item} from "./Item.js";
 import {Quiz} from "./Quiz.js";
 
@@ -25,7 +25,6 @@ export function addTableRow() {
 
 }
 
-let service = new BackendExtensionService();
 export async function createNewQuiz() {
     // TEMP VALUE
     let ownerId = "1";
@@ -58,7 +57,6 @@ function defineItems() {
         items.push(new Item(questions[i].value, answersA[i].value, answersB[i].value, answersC[i].value, answersD[i].value, correct[i].value));
     }
     return items;
-
 }
 
 export async function listQuizzes() {
@@ -113,8 +111,6 @@ export function deleteQuiz(button) {
         listQuizzes();
     }
 }
-
-
 
 // These are crucial to making the functions work when there is an import statement
 // I regret ever entertaining the idea of making this a web app ;-;
