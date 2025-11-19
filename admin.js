@@ -8,6 +8,15 @@ function signIn() {
     }
 }
 
+function passwordHidden() {
+  var x = document.getElementById("password");
+  if (x.type === "password") {
+    x.type = "text";
+  } else {
+    x.type = "password";
+  }
+}
+
 document.addEventListener('DOMContentLoaded', function() {
     const password = document.getElementById("password");
 
