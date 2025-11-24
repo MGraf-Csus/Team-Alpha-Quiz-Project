@@ -98,6 +98,7 @@ export async function listQuizzes() {
         cell2.innerHTML = quiz.getQuestionCount();
         cell3.innerHTML = quiz.getOwnerId();
         cell4.innerHTML = quiz.getTimerLength();
+        console.log("The quiz id that is in this button is "+quizId);
         cell5.innerHTML = `<button onclick="window.location.href='EditQuiz.html?id=${encodeURIComponent(quizId)}'">Edit</button>`;
         cell6.innerHTML = "<button onclick='deleteQuiz(this)'>Delete</button>";
     }
