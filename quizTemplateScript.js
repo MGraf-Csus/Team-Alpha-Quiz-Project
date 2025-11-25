@@ -135,16 +135,21 @@ function highlightSelectedButton(qNumber, selectedIndex) {
 }
 
 // -------------------- Timer --------------------
+let timerInterval = null;
+let timerStopped = false;
 function startTimer() {
     const timerEl = document.getElementById("timer");
     let timeLeft = quiz.timerLength;
-
-    const interval = setInterval(() => {
+    timerStopped = false;
+    timerInterval = setInterval(() => {
+        if (timerStopped) {
+            clearInterval(timerInterval);
+            return;
+        }
         timerEl.textContent = formatTime(timeLeft);
         timeLeft--;
-
         if (timeLeft < 0) {
-            clearInterval(interval);
+            clearInterval(timerInterval);
             timerEl.textContent = "00:00:00";
             submitExam(true);
         }
@@ -160,6 +165,12 @@ function formatTime(seconds) {
 
 // -------------------- Submit --------------------
 async function submitExam(forceSub = false) {
+    // Stop timer if running
+    timerStopped = true;
+    if (timerInterval) {
+        clearInterval(timerInterval);
+        timerInterval = null;
+    }
 
     const confirmNeeded = questionsAnswered != quiz.numQuestions;
     const ok = await showConfirmModal(
