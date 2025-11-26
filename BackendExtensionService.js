@@ -67,7 +67,7 @@ class BackendExtensionService {
         const itemsAsObject = Object.fromEntries(
             quiz.items.map((item, index) => [index, this.#itemToObject(item)])
         );
-
+        
         const studentScoresAsObject = Object.fromEntries(
             quiz.studentScores.map(studentScore => [studentScore.studentId, studentScore.score])
         );
@@ -114,11 +114,19 @@ class BackendExtensionService {
         let numQuestionsToRemove = quiz.items.length - quiz.numQuestions;
         while (numQuestionsToRemove > 0) {
             let ranNum = this.#getRandomInt(0, quiz.items.length - 1);
-            // console.log(ranNum);
             quiz.items.splice(ranNum, 1);
             numQuestionsToRemove--;
         }
+        let temp = quiz.items;
+        quiz.items = this.#shuffle(temp);
         return quiz;
+    }
+    #shuffle(array) {
+        for (let i = array.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1)); 
+            [array[i], array[j]] = [array[j], array[i]]; 
+        }
+        return array;
     }
     #getRandomInt(min, max) {
         min = Math.ceil(min);
