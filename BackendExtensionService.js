@@ -15,8 +15,8 @@ class BackendExtensionService {
         return await signInUsernamePassword(username, password);
     }
 
-    async createAccount(adminId, username, password, role) {
-        return await createAccountWithUsernamePassword(adminId, username, password, role);
+    async createAccount(username, password, role) {
+        return await createAccountWithUsernamePassword(username, password, role);
     }
 
     async editAccount(accountId, updatedData) {
