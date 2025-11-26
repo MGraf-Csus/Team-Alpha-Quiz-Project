@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Sign In</title>
     <link rel="stylesheet" href="css.css">
+    <script type="module" src="accountManagement.js"></script>
 </head>
 
 <header>
@@ -25,17 +26,23 @@
             </ul>
         </div>
         <div class="main-body" id="contact-body">
-            <h2 class="page-titles">Admin Control Panel:</h2>
+            <h2 class="page-titles">Create user:</h2>
             <ul>
-                <li><h3>Quizzes:</h3></li>
-                <li><button type="button" onclick="window.location.href='CreateQuiz.html'">Create Quiz</button></li>
-                <li><button type="button" onclick="window.location.href='ManageQuiz.html'">Manage Quiz</button></li>
+                <li><label for="usernameInput">User Name:</label></li>
+                <li><input type="text" id="usernameInput" name="username" required></li>
 
-                <li><h3>Users:</h3></li>
-                <li><button type="button" onclick="window.location.href='CreateUser.html'">Create User</button></li>
-                <li><button type="button" onclick="window.location.href='ManageUser.html'">Manage User</button></li>
+                <li><label for="passwordInput">Password:</label></li>
+                <li><input type="text" id="passwordInput" name="password" required></li>
 
-                <li><button type="button" onclick="window.location.href='AdminSign-in.html'">Log Out</button></li>
+                <li><label for="passwordConfirmInput">Confirm password:</label></li>
+                <li><input type="text" id="passwordConfirmInput" name="passwordConfirm" required></li>
+
+                <li><label for="roleInput">Role:</label></li>
+                <li><input type="text" id="roleInput" name="password" placeholder="(Admin or Student)" required></li>
+
+                <li><button type="button" onclick="createAccount()">Create account</button></li>
+
+                <li><button type="button" onclick="window.location.href='AdminControlPanel.html'">Go Back</button></li>
             </ul>
         </div>
     </div>

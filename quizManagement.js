@@ -25,6 +25,7 @@ export function addTableRow() {
 
 }
 
+
 export async function createNewQuiz() {
     //popup to confirm
     let confirmation = confirm("Are you wanting to save the quiz with these changes?");
