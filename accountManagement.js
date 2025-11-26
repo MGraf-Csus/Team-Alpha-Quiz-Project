@@ -7,7 +7,7 @@ export async function signIn() {
     let accdata = await service.getAccount(usrnm);
     let role = accdata.role;
     if (role === "admin") {
-        let signedIn = await signIn(usrnm, psswrd);
+        let signedIn = await service.signIn(usrnm, psswrd);
         if(signedIn) {
             window.location.href = "AdminControlPanel.html";
         }
