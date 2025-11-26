@@ -36,11 +36,11 @@ async function signInUsernamePassword(username, password) {
     }
 }
 
-async function createAccountWithUsernamePassword(adminId, username, password, role) {
+async function createAccountWithUsernamePassword(username, password, role) {
     try {
         const docSnap = await getDoc(doc(db, 'users', username));
         if (docSnap.exists()) throw new Error("User already exists.");
-        await addDocument("users", username, { adminId, username, password, role });
+        await addDocument("users", username, { username, password, role });
         console.log("✅ Created account");
         return true;
     } catch (error) {

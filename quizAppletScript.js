@@ -33,6 +33,4 @@ function renderQuizList() {
     quizListContainer.appendChild(fragment);
 }
 
-
-
 window.addEventListener("DOMContentLoaded", init);
