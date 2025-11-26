@@ -30,7 +30,8 @@ Prerequisites
 - A modern web browser (Chrome, Edge, Firefox)
 
 Run locally (quick)
-- Open locally: double-click `index.html` to open in a browser
+- Open locally: open `index.html` using a local server to open in a browser
+  (This can be done using most IDE's, due to security changes with web browsers, javascript is no longer loaded when opening an html file.)
 
 
 
