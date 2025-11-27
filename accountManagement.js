@@ -68,7 +68,7 @@ export async function getAccounts() {
         manageBtn.type = "button";
         manageBtn.textContent = "Manage Account";
         manageBtn.onclick = function () {
-            window.location.href = `EditUser.html?id=?id=${encodeURIComponent(acc.username)}`;
+            window.location.href = `EditUser.html?id=${encodeURIComponent(acc.username)}`;
         }
         manage.appendChild(manageBtn);
         usr.appendChild(manage);
@@ -77,23 +77,61 @@ export async function getAccounts() {
     usrContainer.appendChild(fragment);
 }
 
-export function getUserData() {
+export async function getUserData() {
     const params = new URLSearchParams(window.location.search);
     const accId = params.get('id');
-    let acc = service.getAccount(accId);
+    let acc = await service.getAccount(accId);
     document.getElementById("usernameInput").value = acc.username;
     document.getElementById("roleInput").value = acc.role;
-
 }
 
-export function editAccountData() {
+export async function editAccountData() {
     const params = new URLSearchParams(window.location.search);
     const accId = params.get('id');
-    let acc = getAccount(accId);
+    let acc = await service.getAccount(accId);
     let accName = document.getElementById("usernameInput").value;
-    let accRole = document.getElementById("roleInput").value = acc.role;
+    let accRole = document.getElementById("roleInput").value;
+    let psswrd = document.getElementById("passwordInput").value;
+    let psswrdConfirm = document.getElementById("passwordConfirmInput").value;
 
-    editAccount(accName, accRole);
+    if(accName !== acc.name) {
+        let newName = {
+            username: accName
+        }
+        console.log(newName);
+        service.editAccount(acc, newName);
+    }
+    if(accRole !== acc.role) {
+        let newRole = {
+            role: accRole
+        }
+        console.log(newRole)
+        service.editAccount(acc, newRole);
+    }
+    if(psswrd && psswrdConfirm) {
+        console.log("data found in password and confirmation fields, checking for match.");
+        if(psswrd.trim() === psswrdConfirm.trim()) {
+            console.log("password fields match.")
+            let newPassword = {
+                password: psswrd
+            }
+            service.editAccount(acc, newPassword)
+        }
+        else {
+            console.log("password fields do not match.")
+        }
+    }
+    else if(psswrd || psswrdConfirm) {
+        console.log("only one password field has data.")
+    }
+    else if(!psswrd && !psswrdConfirm) {
+        console.log("password fields empty, will not update password.")
+    }
+    let confirmed = confirm("Save changes to user?");
+    if(confirmed) {
+        alert("Account updated successfully.");
+        window.location.href = `ManageUser.html`;
+    }
 }
 
 export async function deleteAccount() {
