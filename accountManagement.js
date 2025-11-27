@@ -101,12 +101,12 @@ export async function deleteAccount() {
 }
 
 export function passwordHidden() {
-  var x = document.getElementById("password");
-  if (x.type === "password") {
-    x.type = "text";
-  } else {
-    x.type = "password";
-  }
+    var x = document.getElementById("password");
+    if (x.type === "password") {
+        x.type = "text";
+    } else {
+        x.type = "password";
+    }
 }
 
 document.addEventListener('DOMContentLoaded', function() {

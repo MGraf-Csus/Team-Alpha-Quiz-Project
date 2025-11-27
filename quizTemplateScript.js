@@ -1,8 +1,10 @@
 import { service } from "./BackendExtensionService.js";
+import { StudentScore } from "./StudentScore.js";
 
 // -------------------- State --------------------
 let quiz = null;
 let quizId = null;
+let testerId = null;
 let questionsAnswered = 0;
 let userAnswers = [];
 let correctAnswers = [];
@@ -11,6 +13,7 @@ let correctness = [];
 // -------------------- Init --------------------
 export async function initQuiz() {
     await loadQuiz();
+    setTesterId();
     preprocessQuiz();
     initCounters();
     startTimer();
@@ -31,6 +34,17 @@ async function loadQuiz() {
         quiz = await service.getQuizTakingView(quizId);
     } catch (err) {
         console.error("Error loading quiz:", err);
+        quizId = params.get("id");
+    }
+}
+
+// Also checks if tester already took test
+function setTesterId() {
+    const params = new URLSearchParams(window.location.search);
+    testerId = params.get("username");
+    if (quiz.studentScores.some((s) => s.studentId === testerId)) {
+        alert("You have already taken this quiz.\n" + "You Scored: " + `${quiz.studentScores.find(s => s.studentId === testerId).score}`);
+        window.location.href = "QuizApplet.html";
     }
 }
 
@@ -141,19 +155,26 @@ function startTimer() {
     const timerEl = document.getElementById("timer");
     let timeLeft = quiz.timerLength;
     timerStopped = false;
+
     timerInterval = setInterval(() => {
         if (timerStopped) {
             clearInterval(timerInterval);
             return;
         }
+
         timerEl.textContent = formatTime(timeLeft);
         timeLeft--;
+
         if (timeLeft < 0) {
             clearInterval(timerInterval);
             timerEl.textContent = "00:00:00";
             submitExam(true);
         }
     }, 1000);
+}
+function stopTimer() {
+    timerStopped = true;
+    clearInterval(timerInterval);
 }
 
 function formatTime(seconds) {
@@ -166,11 +187,7 @@ function formatTime(seconds) {
 // -------------------- Submit --------------------
 async function submitExam(forceSub = false) {
     // Stop timer if running
-    timerStopped = true;
-    if (timerInterval) {
-        clearInterval(timerInterval);
-        timerInterval = null;
-    }
+    stopTimer();
 
     const confirmNeeded = questionsAnswered != quiz.numQuestions;
     const ok = await showConfirmModal(
@@ -184,6 +201,10 @@ async function submitExam(forceSub = false) {
 
     const score = correctness.filter(x => x === true).length;
 
+    // Store student score in quiz
+    quiz.studentScores.push(new StudentScore(testerId, `${score}/${quiz.items.length}`));
+    await service.editQuiz(quizId, quiz);
+
     let scoreEl = document.getElementById("quiz-submitted-score");
     if (!scoreEl) {
         scoreEl = createEl("div", "", "");
@@ -192,6 +213,11 @@ async function submitExam(forceSub = false) {
     }
 
     scoreEl.textContent = `${score} / ${quiz.items.length}`;
+
+    const leave = confirm("Quiz Was Submitted Succesfully!\n" + "You Scored: " + `${score}/${quiz.items.length}`);
+    if (leave) {
+        window.location.href = "QuizApplet.html";
+    }
 }
 
 // -------------------- Confirm --------------------

@@ -34,7 +34,6 @@ Run locally (quick)
   (This can be done using most IDE's, due to security changes with web browsers, javascript is no longer loaded when opening an html file.)
 
 
-
 Firebase
 - `FirebaseHandler.js` contains helper logic to integrate with Firebase. To use Firebase services:
 	1. Create a Firebase project and obtain your web config.

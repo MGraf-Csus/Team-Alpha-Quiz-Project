@@ -16,11 +16,6 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
-// --- Logging Method (Don't Touch) ---
-function logResult(action, collection, docId, data = "") {
-    console.log(`[${action}] (${collection}/${docId})`, data);
-}
-
 // --- Account Methods ---
 
 async function signInUsernamePassword(username, password) {
@@ -45,7 +40,7 @@ async function createAccountWithUsernamePassword(username, password, role) {
         return true;
     } catch (error) {
         console.error("❌ Error creating account:", error);
-        return false;
+        return error;
     }
 }
 
@@ -78,7 +73,7 @@ async function editAccount(username, updates = null) {
     try {
         const docSnap = await getDoc(doc(db, 'users', username));
         if (!docSnap.exists()) throw new Error("User doesn't exist");
-        if (updates != null) await updateDoc(doc(db, 'users', username), updates);
+        if (updates != null) await saveDocument('users', username, updates);
         console.log("✅ Account edited successfully");
         return true;
     } catch (error) {
@@ -93,7 +88,7 @@ async function editAccount(username, updates = null) {
 async function addEmptyDocument(collection, docId = "defaultDoc") {
   try {
         await setDoc(doc(db, collection, docId), {});
-        logResult("✅ Created Empty Document", collection, docId);
+        console.log("✅ Created Empty Document");
     } catch (error) {
         console.error(`[❌ Error Creating Document]:`, error);
     }
@@ -104,7 +99,7 @@ async function addEmptyDocument(collection, docId = "defaultDoc") {
 async function addDocument(collection, docId, data) {
     try {
         await setDoc(doc(db, collection, docId), data);
-        logResult("✅ Added Document", collection, docId, data);
+        console.log("✅ Added Document");
         return true;
     } catch (error) {
         console.error(`[❌ Error Adding Document]:`, error);
@@ -117,7 +112,7 @@ async function addDocument(collection, docId, data) {
 async function saveDocument(collection, docId, data) {
     try {
         await setDoc(doc(db, collection, docId), data, { merge: true });
-        logResult("✅ Updated Document (Merge)", collection, docId, data);
+        console.log("✅ Updated Document (Merge)");
         return true;
     } catch (error) {
         console.error(`[❌ Error Merging Document]:`, error);
@@ -130,7 +125,7 @@ async function saveDocument(collection, docId, data) {
 async function deleteDocument(collection, docId) {
     try {
         await deleteDoc(doc(db, collection, docId));
-        logResult("✅ Deleted Document", collection, docId);
+        console.log("✅ Deleted Document");
         return true;
     } catch (error) {
         console.error(`[❌ Error Deleting Document]:`, error);
@@ -143,7 +138,7 @@ async function deleteDocument(collection, docId) {
 async function rewriteDocument(collection, docId, data) {
     try {
         await setDoc(doc(db, collection, docId), data);
-        logResult("✅ Rewrote Document", collection, docId, data);
+        console.log("✅ Rewrote Document");
         return true;
     } catch (error) {
         console.error(`[❌ Error Rewriting Document]:`, error);
@@ -158,7 +153,7 @@ async function getDocumentData(collection, docId) {
         const docSnap = await getDoc(doc(db, collection, docId));
         if (docSnap.exists()) {
             const data = docSnap.data();
-            logResult("✅ Fetched Document", collection, docId, data);
+            console.log("✅ Fetched Document");
             return data;
         } else {
             console.warn(`[❌ Missing Document] (${collection}/${docId})`);
@@ -189,7 +184,7 @@ async function getDocumentDataField(collection, docId, field) {
     const docSnap = await getDoc(doc(db, collection, docId));
     if (docSnap.exists()) {
         const value = docSnap.data()[field] ?? null;
-        logResult("✅ Fetched Field", collection, docId, { [field]: value });
+        console.log("✅ Fetched Field");
         return value;
     } else {
         console.warn(`[❌ Missing Document] (${collection}/${docId})`);

@@ -102,14 +102,11 @@ export async function listQuizzes() {
         cell5.innerHTML = `<button onclick="window.location.href='EditQuiz.html?id=${encodeURIComponent(quizId)}'">Edit</button>`;
         cell6.innerHTML = "<button onclick='deleteQuiz(this)'>Delete</button>";
     }
-
-
-
 }
 
 
-export async function editQuizPage() {
 
+export async function editQuizPage() {
     // Gather and define quiz id
     const params = new URLSearchParams(window.location.search);
     const quizId = params.get('id');

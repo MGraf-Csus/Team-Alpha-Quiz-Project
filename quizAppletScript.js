@@ -23,7 +23,11 @@ function renderQuizList() {
         
         const quizRef = document.createElement("a");
         quizRef.textContent = quizId;
-        quizRef.href = `QuizTemplate.html?id=${encodeURIComponent(quizId)}`;
+
+        // Intercept click to require login
+        quizRef.addEventListener("click", (e) => {
+            renderSignInPopUp(quizId);
+        });
 
         header.appendChild(quizRef);
         wrapper.appendChild(header);
@@ -33,6 +37,23 @@ function renderQuizList() {
     quizListContainer.appendChild(fragment);
 }
 
+function renderSignInPopUp(quizId) {
+    const modal = document.getElementById("quiz-login");
+    modal.style.display = "flex";
 
+    const submitBtn = document.getElementById("loginSubmit-quiz-login");
+    submitBtn.onclick = async () => {
+        const username = document.getElementById("username-quiz-login").value;
+        const password = document.getElementById("password-quiz-login").value;
+
+        if (await service.signIn(username, password)) {
+            modal.style.display = "none";
+            window.location.href = window.location.href = `QuizTemplate.html?id=${encodeURIComponent(quizId)}&username=${encodeURIComponent(username)}`;
+        }
+
+        
+
+    };
+}
 
 window.addEventListener("DOMContentLoaded", init);
