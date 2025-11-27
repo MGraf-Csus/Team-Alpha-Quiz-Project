@@ -15,6 +15,13 @@ export async function signIn() {
 
 }
 
+// TODO
+// if account name exists, dont allow creation
+// make sure all fields have text and arent null or ""
+// ensure password fields both contain same content
+//
+
+
 export async function createAccount() {
     let usrnm = document.getElementById("usernameInput").value;
     let psswrd = document.getElementById("passwordInput").value;
