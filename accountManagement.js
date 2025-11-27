@@ -7,7 +7,7 @@ export async function signIn() {
     let accdata = await service.getAccount(usrnm);
     let role = accdata.role;
     if (role === "admin") {
-        let signedIn = await signIn(usrnm, psswrd);
+        let signedIn = await service.signIn(usrnm, psswrd);
         if(signedIn) {
             window.location.href = "AdminControlPanel.html";
         }
@@ -15,34 +15,31 @@ export async function signIn() {
 
 }
 
-// TODO
-// if account name exists, dont allow creation
-// make sure all fields have text and arent null or ""
-// ensure password fields both contain same content
-//
-
-
 export async function createAccount() {
     let usrnm = document.getElementById("usernameInput").value;
     let psswrd = document.getElementById("passwordInput").value;
     let psswrdConfirm = document.getElementById("passwordConfirmInput").value;
     let role = document.getElementById("roleInput").value;
 
-    if ((usrnm || psswrd || psswrdConfirm || role) === null) {
+    if (!usrnm || !psswrd || !psswrdConfirm || !role ) {
         alert("Please fill out all fields.");
     }
     else {
-        if( psswrd === psswrdConfirm) {
-            await service.createAccount(usrnm, psswrd, role);
-            console.log("creating account with user:"+usrnm+" passwrod:"+psswrd+" confirmpassword:"+psswrdConfirm);
+        if( psswrd.trim() === psswrdConfirm.trim()) {
+            let created = await service.createAccount(usrnm.trim(), psswrd.trim(), role.trim());
+            if (created) {
+                alert("Account created successfully.");
+            }
+            else {
+                alert("Account with username \""+usrnm+"\" already exists.");
+            }
         }
         else {
             alert("Please ensure account password is same for both fields.");
         }
     }
-
-
 }
+
 export async function getAccounts() {
     let usersSlop = await service.getAllUserIDS();
     const usrContainer = document.getElementById("usrContainer");
@@ -72,7 +69,9 @@ export async function getAccounts() {
 
 }
 
+export async function deleteAccount() {
 
+}
 
 export function passwordHidden() {
   var x = document.getElementById("password");
@@ -96,4 +95,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
 window.signIn = signIn;
 window.createAccount = createAccount;
+window.getAccounts = getAccounts;
+window.deleteAccount = deleteAccount;
 window.passwordHidden = passwordHidden;
