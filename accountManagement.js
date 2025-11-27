@@ -1,4 +1,5 @@
 import {service} from "./BackendExtensionService.js";
+import {editAccount} from "./FirebaseHandler.js";
 
 export async function signIn() {
     let usrnm = document.getElementById("username").value;
@@ -42,31 +43,57 @@ export async function createAccount() {
 
 export async function getAccounts() {
     let usersSlop = await service.getAllUserIDS();
-    const usrContainer = document.getElementById("usrContainer");
-
+    const table = document.getElementById("usrContainer");
+    const usrContainer = document.querySelector("tbody");
     const fragment = document.createDocumentFragment();
 
-    usersSlop.forEach((u, i) => {
+    table.appendChild(usrContainer);
+
+    for (const u of usersSlop) {
+        let acc = await service.getAccount(u);
+        console.log(acc);
         const usr = document.createElement("tr");
         const usrnm = document.createElement("td");
         usrnm.type = "text";
-        usrnm.text = u.name;
+        usrnm.textContent = acc.username;
         usr.appendChild(usrnm);
 
         const role = document.createElement("td");
         role.type = "text";
-        role.text = u.role;
+        role.textContent = acc.role;
         usr.appendChild(role);
 
         const manage = document.createElement("td");
-        manage.type = "button";
-        manage.text = "Manage Account";
-
+        const manageBtn = document.createElement("button");
+        manageBtn.type = "button";
+        manageBtn.textContent = "Manage Account";
+        manageBtn.onclick = function () {
+            window.location.href = `EditUser.html?id=?id=${encodeURIComponent(acc.username)}`;
+        }
+        manage.appendChild(manageBtn);
         usr.appendChild(manage);
         fragment.appendChild(usr);
-    });
+    }
     usrContainer.appendChild(fragment);
+}
 
+export function getUserData() {
+    const params = new URLSearchParams(window.location.search);
+    const accId = params.get('id');
+    let acc = service.getAccount(accId);
+    document.getElementById("usernameInput").value = acc.username;
+    document.getElementById("roleInput").value = acc.role;
+
+}
+
+export function editAccountData() {
+    const params = new URLSearchParams(window.location.search);
+    const accId = params.get('id');
+    let acc = getAccount(accId);
+    let accName = document.getElementById("usernameInput").value;
+    let accRole = document.getElementById("roleInput").value = acc.role;
+
+    editAccount(accName, accRole);
 }
 
 export async function deleteAccount() {
@@ -96,5 +123,7 @@ document.addEventListener('DOMContentLoaded', function() {
 window.signIn = signIn;
 window.createAccount = createAccount;
 window.getAccounts = getAccounts;
+window.getUserData = getUserData;
+window.editAccountData = editAccountData;
 window.deleteAccount = deleteAccount;
 window.passwordHidden = passwordHidden;

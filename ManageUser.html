@@ -26,9 +26,17 @@
             </ul>
         </div>
         <div class="main-body" id="contact-body">
-            <h2 class="page-titles">Create user:</h2>
+            <h2 class="page-titles">Manage Users:</h2>
             <ul>
-
+                <li>
+                    <table id="usrContainer">
+                        <tr>
+                            <td>Username:</td>
+                            <td>Role:</td>
+                            <td>Action:</td>
+                        </tr>
+                    </table>
+                </li>
 
                 <li><button type="button" onclick="window.location.href='AdminControlPanel.html'">Go Back</button></li>
             </ul>
@@ -52,3 +60,14 @@
         </div>
     </div>
 </footer>
+<body>
+    <script>
+        function onloaded() {
+            getAccounts();
+        }
+        window.onload = function() {
+            onloaded();
+        }
+    </script>
+</body>
+</html>
