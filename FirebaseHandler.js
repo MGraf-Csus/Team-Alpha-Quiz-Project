@@ -73,7 +73,7 @@ async function editAccount(username, updates = null) {
     try {
         const docSnap = await getDoc(doc(db, 'users', username));
         if (!docSnap.exists()) throw new Error("User doesn't exist");
-        if (updates != null) await updateDoc(doc(db, 'users', username), updates);
+        if (updates != null) await saveDocument('users', username, updates);
         console.log("✅ Account edited successfully");
         return true;
     } catch (error) {
