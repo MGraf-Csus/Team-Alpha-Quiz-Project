@@ -117,6 +117,49 @@ header {
     color: #f0f0f0;
 }
 
+#quiz-login {
+    display: none;  /* Start Hidden */
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%;
+    height: 100%;
+    font-size: 1.15rem;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+}
+
+#quiz-login-bg {
+    align-items: center;
+    background: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    min-width: 300px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+}
+
+#username-quiz-login,
+#password-quiz-login {
+    width: 100%;
+    margin-bottom: 10px;
+    padding: 10px;
+    font-size: 1rem;
+    box-sizing: border-box;
+    border-radius: 5px;
+}
+
+#loginSubmit-quiz-login {
+    width: 100%;
+    padding: 10px;
+    background: #303030;
+    color: #fff;
+    font-size: 1rem;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
 /* End of quiz home css */
 
 

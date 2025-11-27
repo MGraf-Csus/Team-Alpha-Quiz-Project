@@ -7,7 +7,7 @@ export async function signIn() {
     let accdata = await service.getAccount(usrnm);
     let role = accdata.role;
     if (role === "admin") {
-        let signedIn = await signIn(usrnm, psswrd);
+        let signedIn = await service.signIn(usrnm, psswrd);
         if(signedIn) {
             window.location.href = "AdminControlPanel.html";
         }
@@ -75,12 +75,12 @@ export async function getAccounts() {
 
 
 export function passwordHidden() {
-  var x = document.getElementById("password");
-  if (x.type === "password") {
-    x.type = "text";
-  } else {
-    x.type = "password";
-  }
+    var x = document.getElementById("password");
+    if (x.type === "password") {
+        x.type = "text";
+    } else {
+        x.type = "password";
+    }
 }
 
 document.addEventListener('DOMContentLoaded', function() {

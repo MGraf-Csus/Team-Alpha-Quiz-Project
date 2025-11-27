@@ -3,6 +3,7 @@ import { service } from "./BackendExtensionService.js";
 // -------------------- State --------------------
 let quiz = null;
 let quizId = null;
+let testerId = null;
 let questionsAnswered = 0;
 let userAnswers = [];
 let correctAnswers = [];
@@ -11,6 +12,7 @@ let correctness = [];
 // -------------------- Init --------------------
 export async function initQuiz() {
     await loadQuiz();
+    setTesterId();
     preprocessQuiz();
     initCounters();
     startTimer();
@@ -33,6 +35,7 @@ async function loadQuiz() {
         console.error("Error loading quiz:", err);
     }
 }
+
 
 function preprocessQuiz() {
     correctAnswers = quiz.items.map(q =>
@@ -141,19 +144,26 @@ function startTimer() {
     const timerEl = document.getElementById("timer");
     let timeLeft = quiz.timerLength;
     timerStopped = false;
+
     timerInterval = setInterval(() => {
         if (timerStopped) {
             clearInterval(timerInterval);
             return;
         }
+
         timerEl.textContent = formatTime(timeLeft);
         timeLeft--;
+
         if (timeLeft < 0) {
             clearInterval(timerInterval);
             timerEl.textContent = "00:00:00";
             submitExam(true);
         }
     }, 1000);
+}
+function stopTimer() {
+    timerStopped = true;
+    clearInterval(timerInterval);
 }
 
 function formatTime(seconds) {
@@ -166,11 +176,7 @@ function formatTime(seconds) {
 // -------------------- Submit --------------------
 async function submitExam(forceSub = false) {
     // Stop timer if running
-    timerStopped = true;
-    if (timerInterval) {
-        clearInterval(timerInterval);
-        timerInterval = null;
-    }
+    stopTimer();
 
     const confirmNeeded = questionsAnswered != quiz.numQuestions;
     const ok = await showConfirmModal(

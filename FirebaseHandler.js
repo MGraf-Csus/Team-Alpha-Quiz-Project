@@ -45,7 +45,7 @@ async function createAccountWithUsernamePassword(username, password, role) {
         return true;
     } catch (error) {
         console.error("❌ Error creating account:", error);
-        return false;
+        return error;
     }
 }
 
