@@ -17,7 +17,6 @@ export async function signIn() {
             window.location.href = "AdminControlPanel.html";
         }
     }
-
 }
 
 export async function createAccount() {
@@ -131,7 +130,7 @@ export async function editAccountData() {
             username: accName
         }
         console.log(newName);
-        await finalizeAccount(acc, newName);
+        await finalizeAccount(accId, newName);
     }
     // check if accounts role in field has changed
     if(accRole !== acc.role) {
@@ -139,8 +138,8 @@ export async function editAccountData() {
         let newRole = {
             role: accRole
         }
-        console.log(newRole)
-        await finalizeAccount(acc, newRole);
+        console.log(newRole);
+        await finalizeAccount(accId, newRole);
     }
     // if both fields for passwords are filled, continue
     if(psswrd && psswrdConfirm) {
@@ -152,7 +151,7 @@ export async function editAccountData() {
             let newPassword = {
                 password: psswrd
             }
-            await finalizeAccount(acc, newPassword);
+            await finalizeAccount(accId, newPassword);
         }
         // passwords do not match
         else {
@@ -195,7 +194,7 @@ export async function deleteAccount() {
             // delete account and change page
             await service.deleteAccount(accId)
             alert("Account deleted successfully.");
-            window.location.href = `ManageUser.html`;
+            // window.location.href = `ManageUser.html`;
         }
     }
 }
