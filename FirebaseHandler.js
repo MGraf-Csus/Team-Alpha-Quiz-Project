@@ -21,8 +21,8 @@ const db = getFirestore(app);
 async function signInUsernamePassword(username, password) {
     try {
         const docSnap = await getDoc(doc(db, 'users', username));
-        if (!docSnap.exists()) throw new Error("User doesn't exist.");
-        if (docSnap.data().password !== password) throw new Error("Incorrect Password");
+        if (!docSnap.exists()) throw new Error("Incorrect Credentials");
+        if (docSnap.data().password !== password) throw new Error("Incorrect Credentials");
         console.log("✅ Signed in successfully");
         return getDocumentData('users', username);
     } catch (error) {
