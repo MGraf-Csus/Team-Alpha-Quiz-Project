@@ -36,7 +36,7 @@ class BackendExtensionService {
     async createQuiz(quiz) {
         return await addDocument("quizzes", quiz.id, this.#parseQuizForDatabase(quiz));
     }
-
+    
     async editQuiz(quizId, quiz) {
         return await saveDocument("quizzes", quizId, this.#parseQuizForDatabase(quiz));
     }
@@ -44,6 +44,7 @@ class BackendExtensionService {
     async getAllUserIDS() {
         return await getDocumentIDS("users");
     }
+
     async getAllQuizIDS() {
         return await getDocumentIDS("quizzes");
     }
