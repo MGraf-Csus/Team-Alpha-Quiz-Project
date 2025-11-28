@@ -41,18 +41,36 @@ function renderSignInPopUp(quizId) {
     const modal = document.getElementById("quiz-login");
     modal.style.display = "flex";
 
+    // Submit Button
     const submitBtn = document.getElementById("loginSubmit-quiz-login");
     submitBtn.onclick = async () => {
-        const username = document.getElementById("username-quiz-login").value;
-        const password = document.getElementById("password-quiz-login").value;
+        const usernameInput = document.getElementById("username-quiz-login");
+        const passwordInput = document.getElementById("password-quiz-login");
+        const username = usernameInput.value.trim();
+        const password = passwordInput.value.trim();
+
+        if (!username || !password) {
+            if (!username) usernameInput.classList.add("input-error");
+            else usernameInput.classList.remove("input-error");
+            if (!password) passwordInput.classList.add("input-error");
+            else passwordInput.classList.remove("input-error");
+            return;
+        }
+        else {
+            usernameInput.classList.remove("input-error");
+            passwordInput.classList.remove("input-error");
+        }
 
         if (await service.signIn(username, password)) {
             modal.style.display = "none";
             window.location.href = window.location.href = `QuizTemplate.html?id=${encodeURIComponent(quizId)}&username=${encodeURIComponent(username)}`;
         }
+    };
 
-        
-
+    // Cancel Button
+    const cancelBtn = document.getElementById("loginSubmit-quiz-cancel");
+    cancelBtn.onclick = async () => {
+        modal.style.display = "none";
     };
 }
 
