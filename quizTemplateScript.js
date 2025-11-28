@@ -5,6 +5,7 @@ import { StudentScore } from "./StudentScore.js";
 let quiz = null;
 let quizId = null;
 let testerId = null;
+let testerDoc = null;
 let questionsAnswered = 0;
 let userAnswers = [];
 let correctAnswers = [];
@@ -13,7 +14,7 @@ let correctness = [];
 // -------------------- Init --------------------
 export async function initQuiz() {
     await loadQuiz();
-    setTesterId();
+    await setTesterId();
     await checkSavedQuiz();
     preprocessQuiz();
     initCounters();
@@ -42,15 +43,16 @@ async function loadQuiz() {
 }
 
 // Also checks if tester already took test
-function setTesterId() {
+async function setTesterId() {
     const params = new URLSearchParams(window.location.search);
     testerId = params.get("username");
     if (quiz.studentScores.some((s) => s.studentId === testerId)) {
         alert("You have already taken this quiz.\n" + "You Scored: " + `${quiz.studentScores.find(s => s.studentId === testerId).score}`);
         window.location.href = "QuizApplet.html";
     }
+    testerDoc = await service.getAccount(testerId);
 }
- 
+
 // -------------------- Page leave / back button --------------------
 function setupPageLeaveHandlers() {
     // Used to check if back or forward has happened
@@ -254,13 +256,17 @@ async function submitExam(forceSub = false, forceMessage = "") {
     if (!ok) {
         resumeTimer();
         return;
-    } 
+    }
 
     const score = correctness.filter(x => x === true).length;
 
-    // Store student score in quiz
+    // Store student score in quiz and user
     quiz.studentScores.push(new StudentScore(testerId, `${score}/${quiz.items.length}`));
     await service.editQuiz(quizId, quiz);
+
+    if (!testerDoc.studentScores) testerDoc.studentScores = [];
+    testerDoc.studentScores.push({ quizId, score: `${score}/${quiz.items.length}` });
+    service.editAccount(testerId, testerDoc);
 
     let scoreEl = document.getElementById("quiz-submitted-score");
     if (!scoreEl) {
