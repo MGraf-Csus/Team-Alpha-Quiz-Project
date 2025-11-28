@@ -17,6 +17,7 @@ export async function signIn() {
             window.location.href = "AdminControlPanel.html";
         }
     }
+
 }
 
 export async function createAccount() {
@@ -108,7 +109,7 @@ export async function getUserData() {
     const accId = params.get('id');
     let acc = await service.getAccount(accId);
     // once edit user page loads, the text fields for the username and role will be filled automatically
-    document.getElementById("usernameInput").value = acc.username;
+    document.getElementById("username").textContent = "User Name: "+acc.username;
     document.getElementById("roleInput").value = acc.role;
 }
 
@@ -118,27 +119,16 @@ export async function editAccountData() {
     const accId = params.get('id');
     let acc = await service.getAccount(accId);
     // define name, role, password, and second password field data as objects
-    let accName = document.getElementById("usernameInput").value;
     let accRole = document.getElementById("roleInput").value;
     let psswrd = document.getElementById("passwordInput").value;
     let psswrdConfirm = document.getElementById("passwordConfirmInput").value;
 
-    // check if account name in field has changed
-    if(accName !== acc.name) {
-        // define an object for the new username and send it to the finalize account function
-        let newName = {
-            username: accName
-        }
-        console.log(newName);
-        await finalizeAccount(accId, newName);
-    }
     // check if accounts role in field has changed
     if(accRole !== acc.role) {
         // define an object for the new role and send it to the finalize account function
         let newRole = {
             role: accRole
         }
-        console.log(newRole);
         await finalizeAccount(accId, newRole);
     }
     // if both fields for passwords are filled, continue
@@ -161,41 +151,50 @@ export async function editAccountData() {
     }
     // only one password field is filled
     else if(psswrd || psswrdConfirm) {
-        console.log("only one password field has data.")
+        alert("Both password fields must be filled out.")
     }
     // no password fields have data
     else if(!psswrd && !psswrdConfirm) {
         console.log("password fields empty, will not update password.")
     }
-
+    if(!psswrd && !psswrdConfirm && (acc.role === accRole)) {
+        alert("No changes made.")
+    }
 }
 // this function serves to remove repeated code in the editAccountData function
-export async function finalizeAccount(acc, newData) {
+export async function finalizeAccount(accId, newData) {
     // prompt user with confirmation
     let confirmed = confirm("Save changes to user?");
     if(confirmed) {
         // send the new data to the edit account function for database updating
-        await service.editAccount(acc, newData);
+        await service.editAccount(accId, newData);
         alert("Account updated successfully.");
         window.location.href = `ManageUser.html`;
     }
 }
 
 export async function deleteAccount() {
-    // confirmation popup to user
-    let confirmed = confirm("Are you sure you want to delete this account?");
-    if(confirmed) {
-        // secondary confirmation
-        let confirmed2 = confirm("Are you absolutely sure you want to delete this account?");
-        if(confirmed2) {
-            // get the user id from url
-            const params = new URLSearchParams(window.location.search);
-            const accId = params.get('id');
-            // delete account and change page
-            await service.deleteAccount(accId)
-            alert("Account deleted successfully.");
-            // window.location.href = `ManageUser.html`;
+    // get the user id from url
+    const params = new URLSearchParams(window.location.search);
+    const accId = params.get('id');
+    let acc = await service.getAccount(accId);
+    if(!acc.dontDelete) {
+        // confirmation popup to user
+        let confirmed = confirm("Are you sure you want to delete this account?");
+        if(confirmed) {
+            // secondary confirmation
+            let confirmed2 = confirm("Are you absolutely sure you want to delete this account?");
+            if(confirmed2) {
+
+                // delete account and change page
+                await service.deleteAccount(accId)
+                alert("Account deleted successfully.");
+                window.location.href = `ManageUser.html`;
+            }
         }
+    }
+    else {
+        alert("You cannot delete this account.");
     }
 }
 
