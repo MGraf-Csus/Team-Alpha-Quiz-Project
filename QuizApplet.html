@@ -37,12 +37,14 @@
 <!-- Login For Quiz -->
 <div id="quiz-login">
     <div id="quiz-login-bg">
-        <h3 style="margin-top: 0; text-align:center;">Sign In</h3>
-        <input type="text" id="username-quiz-login" placeholder="Username">
-        <input type="password" id="password-quiz-login" placeholder="Password">
-        <button id="loginSubmit-quiz-login">
-            Login
-        </button>
+        <h3 style="margin-top: 0; text-align:center;">Sign In - Important: Once taking quiz DO NOT refresh page, or use forward and back arrows as this will auto submit the quiz</h3>
+        <input type="text" id="username-quiz-login" placeholder="Username" required>
+        <input type="password" id="password-quiz-login" placeholder="Password" required>
+        <div id="quiz-login-btn-ctr">
+            <button id="loginSubmit-quiz-login">Login</button>
+            <button id="loginSubmit-quiz-cancel">Cancel</button>
+        </div>
+
     </div>
 </div>
 
