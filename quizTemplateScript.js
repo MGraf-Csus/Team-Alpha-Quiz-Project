@@ -14,11 +14,14 @@ let correctness = [];
 export async function initQuiz() {
     await loadQuiz();
     setTesterId();
+    await checkSavedQuiz();
     preprocessQuiz();
     initCounters();
     startTimer();
     renderQuiz();
+    setupPageLeaveHandlers();
 }
+
 
 // -------------------- Loading --------------------
 async function loadQuiz() {
@@ -46,6 +49,55 @@ function setTesterId() {
         alert("You have already taken this quiz.\n" + "You Scored: " + `${quiz.studentScores.find(s => s.studentId === testerId).score}`);
         window.location.href = "QuizApplet.html";
     }
+}
+ 
+// -------------------- Page leave / back button --------------------
+function setupPageLeaveHandlers() {
+    // Used to check if back or forward has happened
+    history.pushState({ page: 1 }, "", window.location.href);
+
+    // Detect back / forward navigation
+    window.addEventListener("popstate", () => {
+        console.log("Back/forward detected — saving answers");
+        saveQuizLocally();
+    });
+
+    // Detect page refresh, close, or leaving page
+    window.addEventListener("beforeunload", (event) => {
+        console.log("Page leaving saving answers");
+        saveQuizLocally();
+
+        // Browser warning
+        event.preventDefault();
+        event.returnValue = "";
+    });
+
+    // detect F5 key specifically for refreshes
+    window.addEventListener("keydown", (event) => {
+        if ((event.key === "F5") || (event.ctrlKey && event.key === "r")) {
+            console.log("Refresh detected via keyboard — saving answers");
+            saveQuizLocally();
+        }
+    });
+}
+function saveQuizLocally() {
+    const save = {
+        userAnswers,
+        correctness,
+        questionsAnswered,
+        timestamp: Date.now()
+    };
+    localStorage.setItem("quizSave_" + testerId, JSON.stringify(save));
+}
+async function checkSavedQuiz() {
+    const saved = localStorage.getItem("quizSave_" + testerId);
+    if (saved) {
+        console.log("Detected previous unsent quiz — auto-submitting");
+        await submitExam(true, "Auto-submitted due to refresh/back/close");
+        localStorage.removeItem("quizSave_" + testerId);
+        return true;
+    }
+    return false;
 }
 
 function preprocessQuiz() {
@@ -158,7 +210,6 @@ function startTimer() {
 
     timerInterval = setInterval(() => {
         if (timerStopped) {
-            clearInterval(timerInterval);
             return;
         }
 
@@ -168,13 +219,15 @@ function startTimer() {
         if (timeLeft < 0) {
             clearInterval(timerInterval);
             timerEl.textContent = "00:00:00";
-            submitExam(true);
+            submitExam(true, "Times Up Submitting Exam");
         }
     }, 1000);
 }
 function stopTimer() {
     timerStopped = true;
-    clearInterval(timerInterval);
+}
+function resumeTimer() {
+    timerStopped = false;
 }
 
 function formatTime(seconds) {
@@ -185,7 +238,7 @@ function formatTime(seconds) {
 }
 
 // -------------------- Submit --------------------
-async function submitExam(forceSub = false) {
+async function submitExam(forceSub = false, forceMessage = "") {
     // Stop timer if running
     stopTimer();
 
@@ -194,10 +247,14 @@ async function submitExam(forceSub = false) {
         confirmNeeded
             ? "You still have unanswered questions.\nSubmit anyway?"
             : "Confirm submit?",
-            forceSub
+            forceSub,
+            forceMessage
     );
 
-    if (!ok) return;
+    if (!ok) {
+        resumeTimer();
+        return;
+    } 
 
     const score = correctness.filter(x => x === true).length;
 
@@ -221,7 +278,7 @@ async function submitExam(forceSub = false) {
 }
 
 // -------------------- Confirm --------------------
-function showConfirmModal(message, forceOk = false) {
+function showConfirmModal(message, forceOk = false, forceMessage = "") {
     return new Promise(resolve => {
         const modal = document.getElementById("confirmModal");
         const text = document.getElementById("confirmText");
@@ -232,8 +289,10 @@ function showConfirmModal(message, forceOk = false) {
         modal.classList.remove("hidden");
 
         if (forceOk) {
-            text.textContent = "Times Up";
+            text.textContent = forceMessage;
             no.style.display = "none"; // hide the button
+            resolve(true);
+            
         } else {
             no.style.display = "inline-block"; // show the button
         }
