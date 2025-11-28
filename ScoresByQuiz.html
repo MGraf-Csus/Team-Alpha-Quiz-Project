@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title><!DOCTYPE html>
+        <html lang="en">
+        <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Admin Sign In</title>
+    <link rel="stylesheet" href="css.css">
+    <script type="module" src="quizManagement.js"></script>
+</head>
+
+<header>
+    <div class="header-content">
+        <H1>Quiz Application</H1>
+    </div>
+</header>
+
+<section>
+    <div class="body-content">
+        <div class="side-navbar">
+            <ul>
+                <li><a href="QuizApplet.html">Quiz Home</a></li>
+                <li><a href="AboutPage.html">About Us</a></li>
+                <li><a href="CreditsPage.html">Credits</a></li>
+                <li><a href="ContactPage.html">Contact</a></li>
+                <li id="admin"><a href="AdminSign-in.html">Admin</a></li>
+            </ul>
+        </div>
+        <div class="main-body" id="contact-body">
+            <h2 class="page-titles">Admin Control Panel:</h2>
+            <h3>Quiz Scores:</h3>
+            <table id="scoreListTable">
+                <tr>
+                    <th>Name/Id:</th>
+                    <th>Score:</th>
+                </tr>
+            </table>
+
+            <button type="button" onclick="window.location.href='ManageQuiz.html'">Go Back</button>
+        </div>
+    </div>
+
+</section>
+
+<footer>
+    <div class="footer-content">
+        <nav class="footer-nav">
+            <ul>
+                <li><a href="https://www.facebook.com/groups/2039916366782910"><img src="images\Facebook.png" alt="Facebook"></a></li>
+                <li><a href="https://www.linkedin.com/groups/16022044/"><img src="images\LinkedIn.png" alt="LinkedIn"></a></li>
+                <li><a href="https://www.reddit.com/r/TeamAlphaCSC131/"><img src="images\Reddit.png" alt="Reddit"></a></li>
+                <li><a href="https://www.instagram.com/teamalphacsc131/"><img src="images\Instagram.png" alt="Instagram"></a></li>
+                <li><a href="https://github.com/MGraf-Csus/Team-Alpha-Quiz-Project"><img src="images\GitHub.png" alt="GitHub"></a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            <p>&copy; Team Alpha, CSC 131, Fall 2025. All rights reserved.</p>
+        </div>
+    </div>
+</footer>
+<body>
+<script>
+    function onloaded() {
+        listScoresQuizzes();
+    }
+    window.onload = function() {
+        onloaded();
+    }
+</script>
+</body>
+</html>

@@ -10,14 +10,21 @@ export async function signIn() {
 
     // define role as the role of the returned account
     let role = accdata.role;
-    if (role === "admin") {
-        // when role is admin, call backend sign in with the provided username and password and take user to control panel
-        let signedIn = await service.signIn(usrnm, psswrd);
-        if(signedIn) {
-            window.location.href = "AdminControlPanel.html";
+    if(usrnm && psswrd){
+        if (role === "admin") {
+            // when role is admin, call backend sign in with the provided username and password and take user to control panel
+            let signedIn = await service.signIn(usrnm, psswrd);
+            if(signedIn) {
+                window.location.href = "AdminControlPanel.html";
+            }
+        }
+        else {
+            alert("You are not an admin.");
         }
     }
-
+    else {
+        alert("You must fill out username and password fields.");
+    }
 }
 
 export async function createAccount() {
@@ -39,7 +46,7 @@ export async function createAccount() {
             let created = await service.createAccount(usrnm.trim(), psswrd.trim(), role.trim());
             if (created) {
                 alert("Account created successfully.");
-                window.location.href = `ManageUser.html`;
+                window.location.href = `AdminControlPanel.html`;
             }
             // fails to create account if return is false (account exists)
             else {
