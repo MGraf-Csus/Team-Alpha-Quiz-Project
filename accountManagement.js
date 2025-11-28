@@ -129,7 +129,6 @@ export async function editAccountData() {
         let newRole = {
             role: accRole
         }
-        console.log(newRole)
         await finalizeAccount(accId, newRole);
     }
     // if both fields for passwords are filled, continue
@@ -175,20 +174,27 @@ export async function finalizeAccount(accId, newData) {
 }
 
 export async function deleteAccount() {
-    // confirmation popup to user
-    let confirmed = confirm("Are you sure you want to delete this account?");
-    if(confirmed) {
-        // secondary confirmation
-        let confirmed2 = confirm("Are you absolutely sure you want to delete this account?");
-        if(confirmed2) {
-            // get the user id from url
-            const params = new URLSearchParams(window.location.search);
-            const accId = params.get('id');
-            // delete account and change page
-            await service.deleteAccount(accId)
-            alert("Account deleted successfully.");
-            window.location.href = `ManageUser.html`;
+    // get the user id from url
+    const params = new URLSearchParams(window.location.search);
+    const accId = params.get('id');
+    let acc = await service.getAccount(accId);
+    if(!acc.dontDelete) {
+        // confirmation popup to user
+        let confirmed = confirm("Are you sure you want to delete this account?");
+        if(confirmed) {
+            // secondary confirmation
+            let confirmed2 = confirm("Are you absolutely sure you want to delete this account?");
+            if(confirmed2) {
+
+                // delete account and change page
+                await service.deleteAccount(accId)
+                alert("Account deleted successfully.");
+                window.location.href = `ManageUser.html`;
+            }
         }
+    }
+    else {
+        alert("You cannot delete this account.");
     }
 }
 
