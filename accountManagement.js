@@ -101,9 +101,20 @@ export async function getAccounts() {
             window.location.href = `EditUser.html?id=${encodeURIComponent(acc.username)}`;
         }
 
+        const score = document.createElement("td");
+        const scoreBtn = document.createElement("button");
+        scoreBtn.type = "button";
+        scoreBtn.textContent = "View Scores";
+        // button function call to go to user score page with a special url to the specific user
+        scoreBtn.onclick = function () {
+            window.location.href = `ScoresByUser.html?id=${encodeURIComponent(acc.username)}`;
+        }
+
         // append objects to each other and to the fragment object
         manage.appendChild(manageBtn);
         usr.appendChild(manage);
+        score.appendChild(scoreBtn);
+        usr.appendChild(score);
         fragment.appendChild(usr);
     }
     // once all users are done being constructed in html, take fragment and add to the usr container (table body)
@@ -214,6 +225,41 @@ export function passwordHidden() {
     }
 }
 
+export async function listScoresUsers() {
+    // Gather and define quiz id
+    const params = new URLSearchParams(window.location.search);
+    const userId = params.get('id');
+
+    let user = await service.getAccount(userId);
+    let quizzes = await service.getAllQuizIDS();
+
+    //reference to table
+    const table = document.getElementById("scoreListTable");
+    // finding table body
+    const scoreContainer = document.querySelector("tbody");
+    const fragment = document.createDocumentFragment();
+
+    table.appendChild(scoreContainer);
+    for (let i = 0; i < quizzes.length; i++) {
+        if(user.studentScores[i] !== undefined) {
+            // creating new table row
+            const scoreEntry = document.createElement("tr");
+
+            const qz = document.createElement("td");
+            qz.textContent = user.studentScores[i].quizId;
+
+            const qzScore = document.createElement("td");
+            qzScore.textContent = user.studentScores[i].score;
+
+            scoreEntry.appendChild(qz);
+            scoreEntry.appendChild(qzScore);
+
+            fragment.appendChild(scoreEntry);
+        }
+    }
+    scoreContainer.appendChild(fragment);
+}
+
 document.addEventListener('DOMContentLoaded', function() {
     const password = document.getElementById("password");
 
@@ -232,3 +278,4 @@ window.getUserData = getUserData;
 window.editAccountData = editAccountData;
 window.deleteAccount = deleteAccount;
 window.passwordHidden = passwordHidden;
+window.listScoresUsers = listScoresUsers;

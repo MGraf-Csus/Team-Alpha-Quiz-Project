@@ -261,42 +261,6 @@ export async function listScoresQuizzes() {
     scoreContainer.appendChild(fragment);
 }
 
-export async function listScoresUsers() {
-    // Gather and define quiz id
-    const params = new URLSearchParams(window.location.search);
-    const quizId = params.get('id');
-
-    let quiz = await service.getQuiz(quizId);
-    let users = await service.getAllUserIDS();
-
-
-    //reference to table
-    const table = document.getElementById("scoreListTable");
-    // finding table body
-    const scoreContainer = document.querySelector("tbody");
-    const fragment = document.createDocumentFragment();
-
-    table.appendChild(scoreContainer);
-    for (let i = 0; i < users.length; i++) {
-        if(quiz.studentScores[i]) {
-            // creating new table row
-            const scoreEntry = document.createElement("tr");
-
-            const usr = document.createElement("td");
-            usr.textContent = quiz.studentScores[i].studentId;
-
-            const usrScore = document.createElement("td");
-            usrScore.textContent = quiz.studentScores[i].score;
-
-            scoreEntry.appendChild(usr);
-            scoreEntry.appendChild(usrScore);
-
-            fragment.appendChild(scoreEntry);
-        }
-    }
-    scoreContainer.appendChild(fragment);
-}
-
 // These are crucial to making the functions work when there is an import statement
 // I regret ever entertaining the idea of making this a web app ;-;
 window.addTableRow = addTableRow;
@@ -305,4 +269,3 @@ window.listQuizzes = listQuizzes;
 window.editQuizPage = editQuizPage;
 window.deleteQuiz = deleteQuiz;
 window.listScoresQuizzes = listScoresQuizzes
-window.listScoresUsers = listScoresUsers;
