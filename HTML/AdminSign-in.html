@@ -15,24 +15,38 @@
 </header>
 
 <section>
-    <div class="body-content">
+    <div class="body-content" id="admin-sign-in-body">
         <div class="side-navbar">
             <ul>
                 <li><a href="QuizApplet.html">Quiz Home</a></li>
                 <li><a href="AboutPage.html">About Us</a></li>
                 <li><a href="CreditsPage.html">Credits</a></li>
                 <li><a href="ContactPage.html">Contact</a></li>
-                <li id="admin"><a href="AdminSign-in.html">Admin</a></li>
+                <li class="active" id="admin"><a href="AdminSign-in.html">Admin</a></li>
             </ul>
         </div>
-        <div class="main-body" id="contact-body">
+        
+        <div class="main-body" id="admin-sign-credentials">
             <h2 class="page-titles">Admin Sign In:</h2>
-            <ul>
-                <li><label for="username">Username:</label><input type="text" id="username" name="username" placeholder="Enter your username"></li>
-                <li><label for="password">Password:</label><input type="password" id="password" name="password" placeholder="Enter your password"></li>
-                <li><input type="checkbox" onclick="passwordHidden()">Show Password</li>
-                <li><button type="button" id="sign-in-button" onclick="signIn()">Sign in</button></li>
-            </ul>
+            <div class="sign-in-card">
+                <form class="sign-in-form">
+                    <div class="form-group">
+                        <label for="username">Username:</label>
+                        <input type="text" id="username" name="username" placeholder="Enter your username" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Password:</label>
+                        <input type="password" id="password" name="password" placeholder="Enter your password" required>
+                    </div>
+                    <div class="form-group checkbox-group">
+                        <input type="checkbox" id="show-password" onclick="passwordHidden()">
+                        <label for="show-password">Show Password</label>
+                    </div>
+                    <div class="form-group">
+                        <button type="button" id="sign-in-button" onclick="signIn()">Sign in</button>
+                    </div>
+                </form>
+            </div>
         </div>
     </div>
 </section>
@@ -41,11 +55,11 @@
     <div class="footer-content">
         <nav class="footer-nav">
             <ul>
-                <li><a href="https://www.facebook.com/groups/2039916366782910"><img src="images\Facebook.png" alt="Facebook"></a></li>
-                <li><a href="https://www.linkedin.com/groups/16022044/"><img src="images\LinkedIn.png" alt="LinkedIn"></a></li>
-                <li><a href="https://www.reddit.com/r/TeamAlphaCSC131/"><img src="images\Reddit.png" alt="Reddit"></a></li>
-                <li><a href="https://www.instagram.com/teamalphacsc131/"><img src="images\Instagram.png" alt="Instagram"></a></li>
-                <li><a href="https://github.com/MGraf-Csus/Team-Alpha-Quiz-Project"><img src="images\GitHub.png" alt="GitHub"></a></li>
+                <li><a href="https://www.facebook.com/groups/2039916366782910"><img src="../images/Facebook.png" alt="Facebook"></a></li>
+                <li><a href="https://www.linkedin.com/groups/16022044/"><img src="../images/LinkedIn.png" alt="LinkedIn"></a></li>
+                <li><a href="https://www.reddit.com/r/TeamAlphaCSC131/"><img src="../images/Reddit.png" alt="Reddit"></a></li>
+                <li><a href="https://www.instagram.com/teamalphacsc131/"><img src="../images/Instagram.png" alt="Instagram"></a></li>
+                <li><a href="https://github.com/MGraf-Csus/Team-Alpha-Quiz-Project"><img src="../images/GitHub.png" alt="GitHub"></a></li>
             </ul>
         </nav>
         <div class="copyright">

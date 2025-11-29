@@ -22,29 +22,31 @@
                 <li><a href="AboutPage.html">About Us</a></li>
                 <li><a href="CreditsPage.html">Credits</a></li>
                 <li><a href="ContactPage.html">Contact</a></li>
-                <li id="admin"><a href="AdminSign-in.html">Admin</a></li>
+                <li class="active" id="admin"><a href="AdminSign-in.html">Admin</a></li>
             </ul>
         </div>
-        <div class="main-body" id="contact-body">
+        <div class="main-body" id="admin-edit-user-body">
             <h2 class="page-titles">Edit user:</h2>
-            <ul>
-                <li><h3 id="username"></h3></li>
+            <div class="edit-user-wrapper">
+                <ul>
+                    <li><h3 id="username"></h3></li>
 
-                <li><label for="roleInput">Role:</label></li>
-                <li><input type="text" id="roleInput" name="password" placeholder="(Admin or Student)" required></li>
+                    <li><label for="roleInput">Role:</label></li>
+                    <li><input type="text" id="roleInput" name="password" placeholder="(Admin or Student)" required></li>
 
-                <li><label for="passwordInput">Change password:</label></li>
-                <li><input type="text" id="passwordInput" name="password" required></li>
+                    <li><label for="passwordInput">Change password:</label></li>
+                    <li><input type="text" id="passwordInput" name="password" required></li>
 
-                <li><label for="passwordConfirmInput">Confirm new password:</label></li>
-                <li><input type="text" id="passwordConfirmInput" name="passwordConfirm" required></li>
+                    <li><label for="passwordConfirmInput">Confirm new password:</label></li>
+                    <li><input type="text" id="passwordConfirmInput" name="passwordConfirm" required></li>
 
-                <li><button type="button" onclick="editAccountData()">Save account changes</button></li>
+                    <li><button type="button" onclick="editAccountData()">Save account changes</button></li>
 
-                <li><button type="button" onclick="deleteAccount()">Delete account</button></li>
+                    <li><button type="button" onclick="deleteAccount()">Delete account</button></li>
 
-                <li><button type="button" onclick="window.location.href='ManageUser.html'">Go Back</button></li>
-            </ul>
+                    <li><button type="button" onclick="window.location.href='ManageUser.html'">Go Back</button></li>
+                </ul>
+            </div>
         </div>
     </div>
 </section>
@@ -53,11 +55,11 @@
     <div class="footer-content">
         <nav class="footer-nav">
             <ul>
-                <li><a href="https://www.facebook.com/groups/2039916366782910"><img src="images\Facebook.png" alt="Facebook"></a></li>
-                <li><a href="https://www.linkedin.com/groups/16022044/"><img src="images\LinkedIn.png" alt="LinkedIn"></a></li>
-                <li><a href="https://www.reddit.com/r/TeamAlphaCSC131/"><img src="images\Reddit.png" alt="Reddit"></a></li>
-                <li><a href="https://www.instagram.com/teamalphacsc131/"><img src="images\Instagram.png" alt="Instagram"></a></li>
-                <li><a href="https://github.com/MGraf-Csus/Team-Alpha-Quiz-Project"><img src="images\GitHub.png" alt="GitHub"></a></li>
+                <li><a href="https://www.facebook.com/groups/2039916366782910"><img src="../images/Facebook.png" alt="Facebook"></a></li>
+                <li><a href="https://www.linkedin.com/groups/16022044/"><img src="../images/LinkedIn.png" alt="LinkedIn"></a></li>
+                <li><a href="https://www.reddit.com/r/TeamAlphaCSC131/"><img src="../images/Reddit.png" alt="Reddit"></a></li>
+                <li><a href="https://www.instagram.com/teamalphacsc131/"><img src="../images/Instagram.png" alt="Instagram"></a></li>
+                <li><a href="https://github.com/MGraf-Csus/Team-Alpha-Quiz-Project"><img src="../images/GitHub.png" alt="GitHub"></a></li>
             </ul>
         </nav>
         <div class="copyright">

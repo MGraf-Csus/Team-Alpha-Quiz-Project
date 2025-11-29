@@ -21,37 +21,36 @@
                 <li><a href="AboutPage.html">About Us</a></li>
                 <li><a href="CreditsPage.html">Credits</a></li>
                 <li><a href="ContactPage.html">Contact</a></li>
-                <li id="admin"><a href="AdminSign-in.html">Admin</a></li>
+                <li class="active" id="admin"><a href="AdminSign-in.html">Admin</a></li>
             </ul>
         </div>
-        <div class="main-body" id="contact-body">
+        <div class="main-body" id="admin-create-quiz-body">
             <h2 class="page-titles">Admin Control Panel:</h2>
-            <ul>
-                <li><label for="quizQuestionAmountInput">Amount of questions:</label></li>
-                <li><input type="number" id="quizQuestionAmountInput" name="Questions" min="0" max="100" step="1"></li>
+            <div id="create-quiz-body-wrapper">
+                <ul>
+                    <li><label for="quizQuestionAmountInput">Amount of questions:</label></li>
+                    <li><input type="number" id="quizQuestionAmountInput" name="Questions" min="0" max="100" step="1"></li>
 
-                <li><label for="timerLengthInput">Timer (minutes):</label></li>
-                <li><input type="number" id="timerLengthInput" name="timerLength" min="0" max="120" step="1"></li>
+                    <li><label for="timerLengthInput">Timer (minutes):</label></li>
+                    <li><input type="number" id="timerLengthInput" name="timerLength" min="0" max="120" step="1"></li>
 
-                <li><label for="quizNameInput">Name of Quiz:</label></li>
-                <li><input type="text" id="quizNameInput" name="quizName"></li>
-                <table id="quizQuestionList">
-                    <tr>
-                        <th>Question</th>
-                        <th>Answer A</th>
-                        <th>Answer B</th>
-                        <th>Answer C</th>
-                        <th>Answer D</th>
-                        <th>Correct Answer</th>
-                    </tr>
-                </table>
-                <li><button type="button" onclick="addTableRow()">Add possible question</button></li>
-                <li><button type="button" onclick="createNewQuiz()">Create Quiz</button></li>
-
-
-
-                <li><button type="button" onclick="window.location.href='AdminControlPanel.html'">Go Back</button></li>
-            </ul>
+                    <li><label for="quizNameInput">Name of Quiz:</label></li>
+                    <li><input type="text" id="quizNameInput" name="quizName"></li>
+                    <table id="quizQuestionList">
+                        <tr>
+                            <th>Question</th>
+                            <th>Answer A</th>
+                            <th>Answer B</th>
+                            <th>Answer C</th>
+                            <th>Answer D</th>
+                            <th>Correct Answer</th>
+                        </tr>
+                    </table>
+                    <li><button type="button" onclick="addTableRow()">Add possible question</button></li>
+                    <li><button type="button" onclick="createNewQuiz()">Create Quiz</button></li>
+                    <li><button type="button" onclick="window.location.href='AdminControlPanel.html'">Go Back</button></li>
+                </ul>
+            </div>
         </div>
     </div>
 </section>
@@ -60,11 +59,11 @@
     <div class="footer-content">
         <nav class="footer-nav">
             <ul>
-                <li><a href="https://www.facebook.com/"><img src="images\Facebook.png" alt="Facebook"></a></li>
-                <li><a href="https://www.linkedin.com/"><img src="images\LinkedIn.png" alt="LinkedIn"></a></li>
-                <li><a href="https://x.com/"><img src="images\XLogo.png" alt="X"></a></li>
-                <li><a href="https://www.instagram.com/?hl=en"><img src="images\Instagram.png" alt="Instagram"></a></li>
-                <li><a href="https://github.com/"><img src="images\GitHub.png" alt="GitHub"></a></li>
+                <li><a href="https://www.facebook.com/groups/2039916366782910"><img src="../images/Facebook.png" alt="Facebook"></a></li>
+                <li><a href="https://www.linkedin.com/groups/16022044/"><img src="../images/LinkedIn.png" alt="LinkedIn"></a></li>
+                <li><a href="https://www.reddit.com/r/TeamAlphaCSC131/"><img src="../images/Reddit.png" alt="Reddit"></a></li>
+                <li><a href="https://www.instagram.com/teamalphacsc131/"><img src="../images/Instagram.png" alt="Instagram"></a></li>
+                <li><a href="https://github.com/MGraf-Csus/Team-Alpha-Quiz-Project"><img src="../images/GitHub.png" alt="GitHub"></a></li>
             </ul>
         </nav>
         <div class="copyright">

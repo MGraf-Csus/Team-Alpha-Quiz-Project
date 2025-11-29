@@ -3,7 +3,7 @@
     src: url(fonts/Roboto-VariableFont.ttf);
 }
 
-/* Added global base font size (DH) */
+/* Global Styling */
 html {
     font-size: clamp(15px, 0.8vw, 19px);
 }
@@ -27,15 +27,22 @@ header {
 .main-body{
     flex: 9;
     float: left;
+    gap: 2rem;
     position: relative;
     border: 1px solid rgb(58, 64, 90);
     padding: 40px;
 }
-
 .page-titles{
     margin: 0;
+    font-size: 2rem;
+    font-weight: 600;
+    width: 100%;
+    margin-bottom: 20px;
+    padding-bottom: 8px;
+    border-bottom: 3px solid #4b4b4b;
+    color: #2c2c2c;
+    letter-spacing: 0.5px;
 }
-
 .main-body h3 {
     margin-left: 40px;
 }
@@ -57,20 +64,12 @@ header {
 }
 
 
-
-
 /* ======================= ========================= ======================= */
 /* =======================   QUIZ HOME STYLING CSS   ======================= */
 /* ======================= ========================= ======================= */
 
 
 /* ========================= Titles / Headers ========================= */
-#quiz-home-page-title {
-    margin: 0;
-    padding: 0;
-    border-bottom: 3px solid white;
-}
-
 #quiz-home-list-header {
     margin: 1rem 0;
     padding: 0.5rem;
@@ -173,11 +172,6 @@ header {
     color: #fff;
     transform: scale(0.97);
 }
-
-
-/* End of quiz home css */
-
-
 
 
 /* ======================= ========================= ======================= */
@@ -388,55 +382,979 @@ header {
     transform: scale(1.05);
 }
 
-/* End of quiz template css */
 
+/* ======================= ========================= ======================= */
+/* =======================   ABOUT US STYLING CSS    ======================= */
+/* ======================= ========================= ======================= */
 
-
-#contact-body li {
-    list-style-type: none;
-    margin-bottom: 10px;
-}
-
-#contact-body label {
-    margin-right: 10px;
-}
-
-.side-navbar,
-.side-navbar ul,
-.side-navbar ul li {
+#about-body {
     display: flex;
-    align-items: center;
-    min-width: 150px;
     flex-direction: column;
 }
 
-.side-navbar{
-    flex: 1;
-    border: 1px solid black;
+.about-person {
+    padding: 1.2rem 1.5rem;
+    border: 2px solid rgba(255, 255, 255, 0.25);
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.10);
+    width: clamp(300px, 70%, 1200px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+    transition: 0.25s ease;
 }
 
-.side-navbar ul {
-    height: inherit;
+/* Name header */
+.about-person h3 {
+    margin: 0 0 0.6rem 0;
+    font-size: 1.3rem;
+    font-weight: 700;
+    text-decoration: underline;
+    color: #000;
+}
+
+.about-person h4 {
+    margin: 0.25rem 0;
+    font-weight: normal;
+    line-height: 1.4rem;
+    font-size: 1.1rem;
+    color: #000;
+}
+
+.about-person h4 b {
+    color: #1b1b1b;
+    font-weight: 700;
+}
+
+/* ======================= ========================= ======================= */
+/* =======================    CREDITS STYLING CSS    ======================= */
+/* ======================= ========================= ======================= */
+
+#credits-body {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+#credits-body h3 {
+    margin: 0 0 0.6rem 0;
+    font-size: 1.25rem;
+    font-weight: 700;
+    text-decoration: underline;
+    color: #000;
+}
+#credits-body h4 {
+    margin: 0.25rem 0;
+    font-weight: normal;
+    line-height: 1.4rem;
+    font-size: 1.1rem;
+    color: #000;
+    margin-left: 40px;
+}
+.credit-person {
+    padding: 1rem 1.5rem;
+    width: clamp(300px, 70%, 1200px);
+    border: 2px solid rgba(255, 255, 255, 0.25);
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.10);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+    margin-bottom: 1rem;
+}
+.credit-person h4 b {
+    font-weight: 700;
+    color: #1b1b1b;
+}
+
+
+/* ======================= ========================= ======================= */
+/* =======================    CONTACT STYLING CSS    ======================= */
+/* ======================= ========================= ======================= */
+
+
+#contact-body {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+#contact-body form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    width: 100%;
+    max-width: 600px;
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(6px);
+    padding: 30px;
+    border-radius: 16px;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.2);
+    border: 1px solid rgba(255,255,255,0.15);
+}
+#contact-body li {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+#contact-body label {
+    margin-bottom: 6px;
+    font-weight: 600;
+    color: #1b1b1b;
+}
+#contact-body input[type="text"],
+#contact-body input[type="tel"],
+#contact-body textarea {
+    padding: 12px 15px;
+    font-size: 1rem;
+    border-radius: 10px;
+    border: 2px solid rgba(0,0,0,0.15);
+    background-color: rgba(255,255,255,0.05);
+    transition: all 0.25s ease;
+    resize: none;
+}
+#contact-body input[type="text"]:focus,
+#contact-body input[type="tel"]:focus,
+#contact-body textarea:focus {
+    outline: none;
+    border-color: rgb(187, 187, 187);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    background-color: rgba(255,255,255,0.08);
+}
+#contact-body button#send-message {
+    padding: 12px 20px;
+    font-size: 1rem;
+    font-weight: 600;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    background: #303030;
+    color: #fff;
+    transition: all 0.25s ease;
+}
+#contact-body button#send-message:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(0,0,0,0.25);
+}
+
+/* ======================= ========================= ======================= */
+/* ======================= ADMIN SIGN IN STYLING CSS ======================= */
+/* ======================= ========================= ======================= */
+
+#admin-sign-credentials {
+    display: flex;
+    flex-direction: column;
+}
+.sign-in-card {
+    width: 400px;
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(6px);
+    padding: 30px;
+    border-radius: 16px;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.2);
+    border: 1px solid rgba(255,255,255,0.15);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.sign-in-form {
+    width: 100%;
+}
+.form-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 18px;
+}
+.form-group label {
+    margin-bottom: 6px;
+    font-weight: 600;
+    color: #333;
+}
+.form-group input[type="text"],
+.form-group input[type="password"] {
+    padding: 12px 15px;
+    font-size: 1rem;
+    border-radius: 10px;
+    border: 2px solid rgba(0,0,0,0.15);
+    background-color: rgba(255,255,255,0.05);
+    transition: 0.25s ease;
+}
+
+.form-group input[type="text"]:focus,
+.form-group input[type="password"]:focus {
+    outline: none;
+    border-color: rgb(187, 187, 187);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    background-color: rgba(255,255,255,0.08);
+}
+.checkbox-group {
+    flex-direction: row;
+    align-items: center;
+}
+.checkbox-group input[type="checkbox"] {
+    margin-right: 8px;
+    transform: scale(1.1);
+    cursor: pointer;
+}
+#sign-in-button {
+    padding: 12px 0;
+    width: 100%;
+    border: none;
+    border-radius: 12px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    background: #303030;
+    color: #fff;
+    cursor: pointer;
+    transition: 0.25s ease;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+}
+#sign-in-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(0,0,0,0.3);
+}
+#sign-in-button:active {
+    transform: scale(0.97);
+    box-shadow: 0 3px 8px rgba(0,0,0,0.2);
+}
+
+
+/* ======================= ========================= ======================= */
+/* ==================== ADMIN CONTROL PANNEL STYLING CSS =================== */
+/* ======================= ========================= ======================= */
+
+
+.control-panel-wrapper {
+    width: 100%;
+    max-width: 500px;
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(6px);
+    border-radius: 16px;
+    padding: 30px 25px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+}
+
+.control-panel-wrapper ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.control-panel-wrapper li {
+    margin-bottom: 16px;
+}
+
+.control-panel-wrapper h3 {
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: #222;
+    margin-bottom: 8px;
+}
+
+.control-panel-wrapper button {
+    width: 100%;
+    padding: 12px 20px;
+    font-size: 1rem;
+    font-weight: 600;
+    background: #303030;
+    color: #fff;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+}
+
+.control-panel-wrapper button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(0,0,0,0.3);
+}
+
+.control-panel-wrapper button:active {
+    transform: scale(0.97);
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
+}
+
+
+/* ======================= ========================= ======================= */
+/* ============= ADMIN CONTROL PANNEL CREATE QUIZ STYLING CSS ============== */
+/* ======================= ========================= ======================= */
+
+
+#create-quiz-body-wrapper {
+    margin: 20px auto;
+    padding: 30px 25px;
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(8px);
+    border-radius: 16px;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.2);
+}
+
+#create-quiz-body-wrapper ul {
+    list-style: none;
     padding: 0;
 }
 
-.side-navbar li{
-    list-style-type: none;
-    font-weight: Bold;
-    margin-bottom: 10px;
-    background-color: rgb(58, 64, 90);
-    color: #58c3c3;
+#create-quiz-body-wrapper li {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 16px;
 }
 
-.side-navbar a {
-    color: inherit;
+#create-quiz-body-wrapper label {
+    margin-bottom: 6px;
+    font-weight: 600;
+    color: #222;
+}
+
+#create-quiz-body-wrapper input[type="text"],
+#create-quiz-body-wrapper input[type="number"] {
+    padding: 10px 14px;
+    border-radius: 10px;
+    border: 2px solid rgba(0, 0, 0, 0.2);
+    font-size: 1rem;
+    outline: none;
+    transition: 0.25s ease;
+    background-color: rgba(255, 255, 255, 0.05);
+}
+
+#create-quiz-body-wrapper input[type="text"]:focus,
+#create-quiz-body-wrapper input[type="number"]:focus {
+    border-color: #58c3c3;
+    box-shadow: 0 4px 12px rgba(0, 140, 140, 0.2);
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+#create-quiz-body-wrapper table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0px;
+}
+
+#create-quiz-body-wrapper th,
+#create-quiz-body-wrapper td {
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    padding: 8px;
+    text-align: center;
+}
+
+#create-quiz-body-wrapper th {
+    background-color: rgba(0, 0, 0, 0.6);
+    color: #ffffff;
+}
+
+#create-quiz-body-wrapper button {
+    padding: 12px 0;
+    align-self: center;
+    width: 50%;
+    border: none;
+    border-radius: 12px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    background: #303030;
+    color: #fff;
+    cursor: pointer;
+    transition: 0.25s ease;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+}
+
+#create-quiz-body-wrapper button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(0,0,0,0.3);
+}
+
+#create-quiz-body-wrapper button:active {
+    transform: scale(0.97);
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
+}
+
+
+/* ======================= ========================= ======================= */
+/* ============= ADMIN CONTROL PANNEL MANAGE QUIZ STYLING CSS ============== */
+/* ======================= ========================= ======================= */
+
+
+#admin-manage-quiz-body table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    background-color: rgba(255, 255, 255, 0.08);
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+#admin-manage-quiz-body th,
+#admin-manage-quiz-body td {
+    padding: 10px 12px;
+    text-align: center;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.15);
+}
+
+#admin-manage-quiz-body th {
+    color: #000000;
+    font-weight: 600;
+}
+
+#admin-manage-quiz-body tr:hover {
+    background-color: rgba(90, 71, 179, 0.1);
+}
+
+#admin-manage-quiz-body input[type="text"],
+#admin-manage-quiz-body input[type="number"] {
+    width: 90%;
+    padding: 6px 8px;
+    border-radius: 8px;
+    border: 1px solid rgba(0,0,0,0.2);
+    outline: none;
+    transition: 0.2s ease;
+    background-color: rgba(255, 255, 255, 0.05);
+    text-align: center;
+}
+
+#admin-manage-quiz-body input[type="text"]:focus,
+#admin-manage-quiz-body input[type="number"]:focus {
+    border-color: #58c3c3;
+    box-shadow: 0 2px 8px rgba(0, 140, 140, 0.2);
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+#admin-manage-quiz-body button {
+    padding: 10px 0;
+    margin-top: 15px;
+    width: 100%;
+    border: none;
+    border-radius: 12px;
+    font-size: 1.05rem;
+    font-weight: 600;
+    background: #303030;
+    color: #fff;
+    cursor: pointer;
+    transition: 0.25s ease;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+}
+
+#admin-manage-quiz-body button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(0,0,0,0.3);
+}
+
+#admin-manage-quiz-body button:active {
+    transform: scale(0.97);
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
+}
+
+#admin-manage-quiz-body h3 {
+    margin-top: 20px;
+}
+
+
+/* ======================= ========================= ======================= */
+/* =============  ADMIN CONTROL PANNEL EDIT QUIZ STYLING CSS  ============== */
+/* ======================= ========================= ======================= */
+
+
+#admin-edit-quiz-body .edit-quiz-wrapper {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 30px 25px;
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(8px);
+    border-radius: 16px;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.2);
+}
+
+#admin-edit-quiz-body .edit-quiz-wrapper ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+#admin-edit-quiz-body .edit-quiz-wrapper li {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 16px;
+}
+
+#admin-edit-quiz-body .edit-quiz-wrapper label {
+    margin-bottom: 6px;
+    font-weight: 600;
+    color: #222;
+}
+
+#admin-edit-quiz-body .edit-quiz-wrapper input[type="text"],
+#admin-edit-quiz-body .edit-quiz-wrapper input[type="number"] {
+    padding: 10px 14px;
+    border-radius: 10px;
+    border: 2px solid rgba(0, 0, 0, 0.2);
+    font-size: 1rem;
+    outline: none;
+    transition: 0.25s ease;
+    background-color: rgba(255, 255, 255, 0.05);
+}
+
+#admin-edit-quiz-body .edit-quiz-wrapper input[type="text"]:focus,
+#admin-edit-quiz-body .edit-quiz-wrapper input[type="number"]:focus {
+    border-color: #58c3c3;
+    box-shadow: 0 4px 12px rgba(0, 140, 140, 0.2);
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+#admin-edit-quiz-body .edit-quiz-wrapper table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+}
+
+#admin-edit-quiz-body .edit-quiz-wrapper th,
+#admin-edit-quiz-body .edit-quiz-wrapper td {
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    padding: 8px;
+    text-align: center;
+}
+
+#admin-edit-quiz-body .edit-quiz-wrapper th {
+    background-color: rgba(0, 0, 0, 0.6);
+    color: #ffffff;
+}
+
+#admin-edit-quiz-body .edit-quiz-wrapper button {
+    padding: 12px 0;
+    align-self: center;
+    width: 50%;
+    border: none;
+    border-radius: 12px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    background: #303030;
+    color: #fff;
+    cursor: pointer;
+    transition: 0.25s ease;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+}
+
+#admin-edit-quiz-body .edit-quiz-wrapper button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
+}
+
+#admin-edit-quiz-body .edit-quiz-wrapper button:active {
+    transform: scale(0.97);
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
+}
+
+
+/* ======================= ========================= ======================= */
+/* ==========   ADMIN CONTROL PANNEL USER QUIZ SCORE STYLING CSS  ========== */
+/* ======================= ========================= ======================= */
+
+
+/* Table styling */
+#user-scores-quiz-body table {
+    width: 50%;
+    border-collapse: collapse;
+    margin: 20px 0;
+}
+
+#user-scores-quiz-body th,
+#user-scores-quiz-body td {
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    padding: 10px 12px;
+    text-align: center;
+}
+
+/* Header row */
+#user-scores-quiz-body th {
+    background-color: rgba(0, 0, 0, 0.6);
+    color: #ffffff;
+}
+
+/* Hover effect for dynamically added rows */
+#user-scores-quiz-body tr:hover {
+    background-color: rgba(90, 71, 179, 0.1);
+}
+
+/* Buttons */
+#user-scores-quiz-body button {
+    padding: 12px 0;
+    align-self: center;
+    width: 50%;
+    margin-top: 15px;
+    border: none;
+    border-radius: 12px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    background: #303030;
+    color: #fff;
+    cursor: pointer;
+    transition: 0.25s ease;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+}
+
+#user-scores-quiz-body button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(0,0,0,0.3);
+}
+
+#user-scores-quiz-body button:active {
+    transform: scale(0.97);
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
+}
+
+
+/* ======================= ========================= ======================= */
+/* =====    ADMIN CONTROL PANNEL USER QUIZ SCORE BY USER STYLING CSS   ===== */
+/* ======================= ========================= ======================= */
+
+
+#admin-user-scores-user-body table {
+    width: 50%;
+    border-collapse: collapse;
+    margin: 20px 0;
+}
+#admin-user-scores-user-body th,
+#admin-user-scores-user-body td {
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    padding: 10px 12px;
+    text-align: center;
+}
+#admin-user-scores-user-body th {
+    background-color: rgba(0, 0, 0, 0.6);
+    color: #ffffff;
+}
+#admin-user-scores-user-body tr:hover {
+    background-color: rgba(90, 71, 179, 0.1);
+}
+#admin-user-scores-user-body button {
+    padding: 12px 0;
+    align-self: center;
+    width: 50%;
+    margin-top: 15px;
+    border: none;
+    border-radius: 12px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    background: #303030;
+    color: #fff;
+    cursor: pointer;
+    transition: 0.25s ease;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+}
+
+#admin-user-scores-user-body button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(0,0,0,0.3);
+}
+
+#admin-user-scores-user-body button:active {
+    transform: scale(0.97);
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
+}
+
+
+
+/* ======================= ========================= ======================= */
+/* ============= ADMIN CONTROL PANNEL CREATE USER STYLING CSS ============== */
+/* ======================= ========================= ======================= */
+
+
+.create-user-body-wrapper {
+    max-width: 480px;
+    padding: 30px 25px;
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.create-user-body-wrapper li {
+    margin-bottom: 18px;   
+}
+.create-user-body-wrapper ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.create-user-body-wrapper label {
+    font-weight: 600;
+    color: #222;
+    display: block;
+    margin-bottom: 6px;
+}
+
+.create-user-body-wrapper input[type="text"] {
+    width: 100%;
+    box-sizing: border-box; 
+    padding: 12px 14px;
+    border-radius: 12px;
+    border: 2px solid rgba(0, 0, 0, 0.15);
+    outline: none;
+    font-size: 1rem;
+    background-color: rgba(255, 255, 255, 0.1);
+    transition: 0.25s ease;
+    box-shadow: inset 0 2px 6px rgba(0,0,0,0.05);
+}
+
+.create-user-body-wrapper input[type="text"]:focus {
+    border-color: #d4d4d4;
+    background-color: rgba(255, 255, 255, 0.15);
+}
+
+#admin-create-user-body button {
+    width: 100%;
+    padding: 12px 0;
+    border: none;
+    border-radius: 14px;
+    font-size: 1.05rem;
+    font-weight: 600;
+    background: #303030;
+    color: #fff;
+    cursor: pointer;
+    transition: 0.25s ease;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.25);
+    margin-top: 10px;
+}
+
+#admin-create-user-body button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(0,0,0,0.3);
+}
+
+#admin-create-user-body button:active {
+    transform: scale(0.97);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* ======================= ========================= ======================= */
+/* ============= ADMIN CONTROL PANNEL MANAGE USER STYLING CSS ============== */
+/* ======================= ========================= ======================= */
+
+
+.manage-users-wrapper ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+#admin-manage-users-body table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    background-color: rgba(255, 255, 255, 0.08);
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+#admin-manage-users-body th,
+#admin-manage-users-body td {
+    padding: 10px 12px;
+    text-align: center;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.15);
+}
+
+#admin-manage-users-body th {
+    color: #000000;
+    font-weight: 600;
+}
+
+#admin-manage-users-body tr:hover {
+    background-color: rgba(90, 71, 179, 0.1);
+}
+
+/* Inputs inside table rows */
+#admin-manage-users-body input[type="text"],
+#admin-manage-users-body input[type="number"] {
+    width: 90%;
+    padding: 6px 8px;
+    border-radius: 8px;
+    border: 1px solid rgba(0,0,0,0.2);
+    outline: none;
+    transition: 0.2s ease;
+    background-color: rgba(255, 255, 255, 0.05);
+    text-align: center;
+}
+
+#admin-manage-users-body input[type="text"]:focus,
+#admin-manage-users-body input[type="number"]:focus {
+    border-color: #58c3c3;
+    box-shadow: 0 2px 8px rgba(0, 140, 140, 0.2);
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* Buttons inside the card */
+#admin-manage-users-body button {
+    padding: 10px 0;
+    margin-top: 15px;
+    width: 100%;
+    border: none;
+    border-radius: 12px;
+    font-size: 1.05rem;
+    font-weight: 600;
+    background: #303030;
+    color: #fff;
+    cursor: pointer;
+    transition: 0.25s ease;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+}
+
+#admin-manage-users-body button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(0,0,0,0.3);
+}
+
+#admin-manage-users-body button:active {
+    transform: scale(0.97);
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Optional heading spacing */
+#admin-manage-users-body h3 {
+    margin-top: 20px;
+}
+
+
+/* ======================= ========================= ======================= */
+/* =============  ADMIN CONTROL PANNEL EDIT USER STYLING CSS  ============== */
+/* ======================= ========================= ======================= */
+
+
+#admin-edit-user-body .edit-user-wrapper {
+    background-color: rgba(255, 255, 255, 0.08);
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+    font-size: 1.2rem;
+    max-width: 500px;
+}
+#admin-edit-user-body ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+#admin-edit-user-body li {
+    margin-bottom: 15px;
+}
+#admin-edit-user-body li #username {
+    text-align: center;
+    width: 100%;
+    margin: 0;
+}
+#admin-edit-user-body input[type="text"],
+#admin-edit-user-body input[type="number"] {
+    width: 95%;
+    padding: 8px 10px;
+    border-radius: 8px;
+    font-size: 1rem;
+    border: 1px solid rgba(0,0,0,0.2);
+    outline: none;
+    transition: 0.2s ease;
+    background-color: rgba(255,255,255,0.05);
+    text-align: center;
+}
+#admin-edit-user-body input[type="text"]:focus,
+#admin-edit-user-body input[type="number"]:focus {
+    border-color: #58c3c3;
+    box-shadow: 0 2px 8px rgba(0,140,140,0.2);
+    background-color: rgba(255,255,255,0.1);
+}
+#admin-edit-user-body button {
+    padding: 10px 0;
+    width: 100%;
+    border: none;
+    border-radius: 12px;
+    font-size: 1.05rem;
+    font-weight: 600;
+    background: #303030;
+    color: #fff;
+    cursor: pointer;
+    transition: 0.25s ease;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+}
+#admin-edit-user-body button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(0,0,0,0.3);
+}
+#admin-edit-user-body button:active {
+    transform: scale(0.97);
+    box-shadow: 0 3px 8px rgba(0,0,0,0.2);
+}
+
+
+
+
+/* ======================= ========================= ======================= */
+/* =======================  SIDE NAV BAR STYLING CSS ======================= */
+/* ======================= ========================= ======================= */
+
+
+.side-navbar {
+    flex: 1;
+    height: fit-content;
+    padding: 20px 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 16px;
+}
+
+.side-navbar ul {
+    list-style: none;
+    padding: 0;
+    width: 100%;
+}
+
+.side-navbar li {
+    width: 100%;
+    margin-bottom: 14px;
+    font-weight: 600;
+    border-radius: 10px;
+    transition: transform 0.25s ease, background-color 0.25s ease, box-shadow 0.25s ease;
+    overflow: hidden;
+}
+
+.side-navbar li a {
+    display: block;
+    width: 100%;
+    padding: 14px 16px;
+    color: #000;
     text-decoration: none;
+    border: 2px solid rgba(0,0,0,0.15);
+    border-left: 4px solid transparent;
+    transition: all 0.25s ease;
+    background-color: rgba(255, 255, 255, 0.05);
+    font-size: 1rem;
 }
 
-.side-navbar #admin{
+.side-navbar li.active,
+.side-navbar li.active a {
+    background-color: rgba(0, 0, 0, 0.85);
+    color: #ffffff;
+    border-left: 4px solid #585858;
+}
+
+.side-navbar li:hover {
+    background-color: rgba(0, 0, 0, 0.85);
+    transform: translateX(5px);
+    box-shadow: 0 6px 16px rgba(0,0,0,0.25);
+}
+
+.side-navbar li:hover a {
+    color: #ffffff;
+    border-left: 4px solid #585858;
+    background-color: transparent;
+}
+
+.side-navbar #admin {
     color: #eb4242;
     align-self: flex-end;
+    font-weight: 700;
+    transition: color 0.25s ease;
 }
+
+.side-navbar #admin:hover {
+    color: #ff6b6b;
+}
+
+
+/* Footer css */
 
 .footer-nav {
     display: flex;
