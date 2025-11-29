@@ -37,7 +37,7 @@ Run locally (quick)
 Firebase
 - `FirebaseHandler.js` contains helper logic to integrate with Firebase. To use Firebase services:
 	1. Create a Firebase project and obtain your web config.
-	2. Add your Firebase config to `FirebaseHandler.js` (or create a secure config flow).
+	2. Add your Firebase config to `firebaseConfig.js` (or create a secure config flow).
 	3. Ensure authentication and database rules are configured as needed.
 
 Project structure (high-level)
