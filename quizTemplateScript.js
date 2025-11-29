@@ -23,7 +23,6 @@ export async function initQuiz() {
     setupPageLeaveHandlers();
 }
 
-
 // -------------------- Loading --------------------
 async function loadQuiz() {
     const params = new URLSearchParams(window.location.search);
