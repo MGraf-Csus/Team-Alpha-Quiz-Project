@@ -1,16 +1,6 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/12.5.0/firebase-app.js";
 import { getFirestore, doc, setDoc, deleteDoc, getDoc, getDocs, collection } from "https://www.gstatic.com/firebasejs/12.5.0/firebase-firestore.js";
-
-// --- Firebase config (DON"T TOUCH IT) ---
-const firebaseConfig = {
-  apiKey: "AIzaSyDGsH-wE6-DBE0q0CUjFjkqYzFGaje0KFs",
-  authDomain: "team-alpha-quiz-db-79c1f.firebaseapp.com",
-  projectId: "team-alpha-quiz-db-79c1f",
-  storageBucket: "team-alpha-quiz-db-79c1f.firebasestorage.app",
-  messagingSenderId: "1081382156789",
-  appId: "1:1081382156789:web:f73623780655702d4648bc",
-  measurementId: "G-6LFQZZNV8L"
-};
+import { firebaseConfig } from "./firebaseConfig.js";
 
 // --- Initialize Firebase ---
 const app = initializeApp(firebaseConfig);
