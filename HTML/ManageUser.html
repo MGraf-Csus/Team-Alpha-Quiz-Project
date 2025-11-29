@@ -2,14 +2,10 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title><!DOCTYPE html>
-        <html lang="en">
-        <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Admin Sign In</title>
-    <link rel="stylesheet" href="css.css">
-    <script type="module" src="quizManagement.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Sign In</title>
+    <link rel="stylesheet" href="../css.css">
+    <script type="module" src="../JavaScript/accountManagement.js"></script>
 </head>
 
 <header>
@@ -30,19 +26,22 @@
             </ul>
         </div>
         <div class="main-body" id="contact-body">
-            <h2 class="page-titles">Admin Control Panel:</h2>
-            <h3>Quiz Scores:</h3>
-            <table id="scoreListTable">
-                <tr>
-                    <th>Name/Id:</th>
-                    <th>Score:</th>
-                </tr>
-            </table>
+            <h2 class="page-titles">Manage Users:</h2>
+            <ul>
+                <li>
+                    <table id="usrContainer">
+                        <tr>
+                            <td>Username:</td>
+                            <td>Role:</td>
+                            <td>Action:</td>
+                        </tr>
+                    </table>
+                </li>
 
-            <button type="button" onclick="window.location.href='ManageQuiz.html'">Go Back</button>
+                <li><button type="button" onclick="window.location.href='AdminControlPanel.html'">Go Back</button></li>
+            </ul>
         </div>
     </div>
-
 </section>
 
 <footer>
@@ -62,13 +61,13 @@
     </div>
 </footer>
 <body>
-<script>
-    function onloaded() {
-        listScoresQuizzes();
-    }
-    window.onload = function() {
-        onloaded();
-    }
-</script>
+    <script>
+        function onloaded() {
+            getAccounts();
+        }
+        window.onload = function() {
+            onloaded();
+        }
+    </script>
 </body>
 </html>

@@ -2,17 +2,13 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title><!DOCTYPE html>
-        <html lang="en">
-        <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Admin Sign In</title>
-    <link rel="stylesheet" href="css.css">
-    <script type="module" src="quizManagement.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us</title>
+    <link rel="stylesheet" href="../css.css">
+    <script src="../JavaScript/contact.js"></script>
 </head>
 
-<header>
+<header>   
     <div class="header-content">
         <H1>Quiz Application</H1>
     </div>
@@ -30,21 +26,20 @@
             </ul>
         </div>
         <div class="main-body" id="contact-body">
-            <h2 class="page-titles">Admin Control Panel:</h2>
-            <h3>Quizzes:</h3>
-            <table id="quizListTable">
-                <tr>
-                    <th>Name/Id:</th>
-                    <th>Questions Count:</th>
-                    <th>Owner Id:</th>
-                    <th>Timer Length:</th>
-                </tr>
-            </table>
+            <h2 class="page-titles">Contact Us:</h2>
+            <ul>
+                <form action="https://formspree.io/f/xblqjvrp" method="POST">
+                <li><label for="username">Name:</label><input type="text" id="name" name="name" placeholder="Enter your name"></li>
+                <li><label for="email">Email:</label><input type="text" id="email" name="email" placeholder="Enter your email"></li>
+                <li><label for="phone-number">Phone Number:</label><input type="tel" id="phone-number" name="phone-number" placeholder="Enter your phone number"></li>
+                <li><label for="message">Message:</label></li>
+                <li id="admin"><textarea id="message" name="message" rows="5" cols="40" placeholder="Enter your message here..."></textarea></li>
+                <li><button type="submit" id="send-message">Send Message</button></li>
+                </form>
+            </ul>
 
-            <button type="button" onclick="window.location.href='AdminControlPanel.html'">Go Back</button>
         </div>
     </div>
-
 </section>
 
 <footer>
@@ -63,14 +58,3 @@
         </div>
     </div>
 </footer>
-<body>
-    <script>
-        function onloaded() {
-            listQuizzes();
-        }
-        window.onload = function() {
-            onloaded();
-        }
-    </script>
-</body>
-</html>

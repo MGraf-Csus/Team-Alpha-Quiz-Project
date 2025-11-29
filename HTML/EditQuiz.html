@@ -2,10 +2,14 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin Sign In</title>
-    <link rel="stylesheet" href="css.css">
-    <script type="module" src="accountManagement.js"></script>
+    <title><!DOCTYPE html>
+        <html lang="en">
+        <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Admin Sign In</title>
+    <link rel="stylesheet" href="../css.css">
+    <script type="module" src="../JavaScript/quizManagement.js"></script>
 </head>
 
 <header>
@@ -26,29 +30,36 @@
             </ul>
         </div>
         <div class="main-body" id="contact-body">
-            <h2 class="page-titles">Edit user:</h2>
+            <h2 class="page-titles">Admin Control Panel:</h2>
             <ul>
-                <li><h3 id="username"></h3></li>
+                <li><label for="quizQuestionAmountInput">Amount of questions:</label></li>
+                <li><input type="number" id="quizQuestionAmountInput" name="Questions" min="0" max="100" step="1"></li>
 
-                <li><label for="roleInput">Role:</label></li>
-                <li><input type="text" id="roleInput" name="password" placeholder="(Admin or Student)" required></li>
+                <li><label for="timerLengthInput">Timer (minutes):</label></li>
+                <li><input type="number" id="timerLengthInput" name="timerLength" min="0" max="120" step="1"></li>
 
-                <li><label for="passwordInput">Change password:</label></li>
-                <li><input type="text" id="passwordInput" name="password" required></li>
+                <li><label for="quizNameInput">Name of Quiz:</label></li>
+                <li><input type="text" id="quizNameInput" name="quizName"></li>
 
-                <li><label for="passwordConfirmInput">Confirm new password:</label></li>
-                <li><input type="text" id="passwordConfirmInput" name="passwordConfirm" required></li>
+                <table id="quizQuestionList">
+                    <tr>
+                        <th>Question</th>
+                        <th>Answer A</th>
+                        <th>Answer B</th>
+                        <th>Answer C</th>
+                        <th>Answer D</th>
+                        <th>Correct Answer</th>
+                    </tr>
+                </table>
+                <li><button type="button" onclick="addTableRow()">Add possible question</button></li>
+                <li><button type="button" onclick="createNewQuiz()">Create Quiz</button></li>
 
-                <li><button type="button" onclick="editAccountData()">Save account changes</button></li>
-
-                <li><button type="button" onclick="deleteAccount()">Delete account</button></li>
-
-                <li><button type="button" onclick="window.location.href='ManageUser.html'">Go Back</button></li>
+                <li><button type="button" onclick="window.location.href='AdminControlPanel.html'">Go Back</button></li>
             </ul>
         </div>
     </div>
-</section>
 
+</section>
 <footer>
     <div class="footer-content">
         <nav class="footer-nav">
@@ -68,7 +79,7 @@
 <body>
 <script>
     function onloaded() {
-        getUserData();
+        editQuizPage();
     }
     window.onload = function() {
         onloaded();

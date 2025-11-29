@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Sign In</title>
-    <link rel="stylesheet" href="css.css">
-    <script type="module" src="accountManagement.js"></script>
+    <link rel="stylesheet" href="../css.css">
+    <script type="module" src="../JavaScript/accountManagement.js"></script>
 </head>
 
 <header>
@@ -26,17 +26,21 @@
             </ul>
         </div>
         <div class="main-body" id="contact-body">
-            <h2 class="page-titles">Manage Users:</h2>
+            <h2 class="page-titles">Create user:</h2>
             <ul>
-                <li>
-                    <table id="usrContainer">
-                        <tr>
-                            <td>Username:</td>
-                            <td>Role:</td>
-                            <td>Action:</td>
-                        </tr>
-                    </table>
-                </li>
+                <li><label for="usernameInput">User Name:</label></li>
+                <li><input type="text" id="usernameInput" name="username" required></li>
+
+                <li><label for="passwordInput">Password:</label></li>
+                <li><input type="text" id="passwordInput" name="password" required></li>
+
+                <li><label for="passwordConfirmInput">Confirm password:</label></li>
+                <li><input type="text" id="passwordConfirmInput" name="passwordConfirm" required></li>
+
+                <li><label for="roleInput">Role:</label></li>
+                <li><input type="text" id="roleInput" name="password" placeholder="(Admin or Student)" required></li>
+
+                <li><button type="button" onclick="createAccount()">Create account</button></li>
 
                 <li><button type="button" onclick="window.location.href='AdminControlPanel.html'">Go Back</button></li>
             </ul>
@@ -60,14 +64,3 @@
         </div>
     </div>
 </footer>
-<body>
-    <script>
-        function onloaded() {
-            getAccounts();
-        }
-        window.onload = function() {
-            onloaded();
-        }
-    </script>
-</body>
-</html>

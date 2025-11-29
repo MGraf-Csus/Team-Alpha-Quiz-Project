@@ -2,13 +2,17 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contact Us</title>
-    <link rel="stylesheet" href="css.css">
-    <script src="contact.js"></script>
+    <title><!DOCTYPE html>
+        <html lang="en">
+        <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Admin Sign In</title>
+    <link rel="stylesheet" href="../css.css">
+    <script type="module" src="../JavaScript/accountManagement.js"></script>
 </head>
 
-<header>   
+<header>
     <div class="header-content">
         <H1>Quiz Application</H1>
     </div>
@@ -26,20 +30,19 @@
             </ul>
         </div>
         <div class="main-body" id="contact-body">
-            <h2 class="page-titles">Contact Us:</h2>
-            <ul>
-                <form action="https://formspree.io/f/xblqjvrp" method="POST">
-                <li><label for="username">Name:</label><input type="text" id="name" name="name" placeholder="Enter your name"></li>
-                <li><label for="email">Email:</label><input type="text" id="email" name="email" placeholder="Enter your email"></li>
-                <li><label for="phone-number">Phone Number:</label><input type="tel" id="phone-number" name="phone-number" placeholder="Enter your phone number"></li>
-                <li><label for="message">Message:</label></li>
-                <li id="admin"><textarea id="message" name="message" rows="5" cols="40" placeholder="Enter your message here..."></textarea></li>
-                <li><button type="submit" id="send-message">Send Message</button></li>
-                </form>
-            </ul>
+            <h2 class="page-titles">Admin Control Panel:</h2>
+            <h3>Quiz Scores:</h3>
+            <table id="scoreListTable">
+                <tr>
+                    <th>Test:</th>
+                    <th>Score:</th>
+                </tr>
+            </table>
 
+            <button type="button" onclick="window.location.href='ManageUser.html'">Go Back</button>
         </div>
     </div>
+
 </section>
 
 <footer>
@@ -58,3 +61,14 @@
         </div>
     </div>
 </footer>
+<body>
+<script>
+    function onloaded() {
+        listScoresUsers();
+    }
+    window.onload = function() {
+        onloaded();
+    }
+</script>
+</body>
+</html>
