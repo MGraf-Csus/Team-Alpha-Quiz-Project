@@ -4,11 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Sign In</title>
-    <link rel="stylesheet" href="css.css">
-    <script type="module" src="accountManagement.js"></script>
+    <link rel="stylesheet" href="../css.css">
 </head>
 
-<header>   
+<header>
     <div class="header-content">
         <H1>Quiz Application</H1>
     </div>
@@ -26,12 +25,17 @@
             </ul>
         </div>
         <div class="main-body" id="contact-body">
-            <h2 class="page-titles">Admin Sign In:</h2>
+            <h2 class="page-titles">Admin Control Panel:</h2>
             <ul>
-                <li><label for="username">Username:</label><input type="text" id="username" name="username" placeholder="Enter your username"></li>
-                <li><label for="password">Password:</label><input type="password" id="password" name="password" placeholder="Enter your password"></li>
-                <li><input type="checkbox" onclick="passwordHidden()">Show Password</li>
-                <li><button type="button" id="sign-in-button" onclick="signIn()">Sign in</button></li>
+                <li><h3>Quizzes:</h3></li>
+                <li><button type="button" onclick="window.location.href='CreateQuiz.html'">Create Quiz</button></li>
+                <li><button type="button" onclick="window.location.href='ManageQuiz.html'">Manage Quiz</button></li>
+
+                <li><h3>Users:</h3></li>
+                <li><button type="button" onclick="window.location.href='CreateUser.html'">Create User</button></li>
+                <li><button type="button" onclick="window.location.href='ManageUser.html'">Manage User</button></li>
+
+                <li><button type="button" onclick="window.location.href='AdminSign-in.html'">Log Out</button></li>
             </ul>
         </div>
     </div>

@@ -2,10 +2,14 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Quiz Home</title>
-    <link rel="stylesheet" href="css.css">
-    <script type="module" src="quizAppletScript.js"></script> 
+    <title><!DOCTYPE html>
+        <html lang="en">
+        <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Admin Sign In</title>
+    <link rel="stylesheet" href="../css.css">
+    <script type="module" src="../JavaScript/accountManagement.js"></script>
 </head>
 
 <header>
@@ -25,28 +29,21 @@
                 <li id="admin"><a href="AdminSign-in.html">Admin</a></li>
             </ul>
         </div>
-        <div class="main-body">
-            <h2 id="quiz-home-page-title" class="page-titles">Quiz Home:</h2>     
-            <h3 id="quiz-home-list-header">Select Quiz:</h3>
-            <!-- List of quizes to be taken -->
+        <div class="main-body" id="contact-body">
+            <h2 class="page-titles">Admin Control Panel:</h2>
+            <h3>Quiz Scores:</h3>
+            <table id="scoreListTable">
+                <tr>
+                    <th>Test:</th>
+                    <th>Score:</th>
+                </tr>
+            </table>
 
+            <button type="button" onclick="window.location.href='ManageUser.html'">Go Back</button>
         </div>
     </div>
+
 </section>
-
-<!-- Login For Quiz -->
-<div id="quiz-login">
-    <div id="quiz-login-bg">
-        <h3 style="margin-top: 0; text-align:center;">Sign In - Important: Once taking quiz DO NOT refresh page, or use forward and back arrows as this will auto submit the quiz</h3>
-        <input type="text" id="username-quiz-login" placeholder="Username" required>
-        <input type="password" id="password-quiz-login" placeholder="Password" required>
-        <div id="quiz-login-btn-ctr">
-            <button id="loginSubmit-quiz-login">Login</button>
-            <button id="loginSubmit-quiz-cancel">Cancel</button>
-        </div>
-
-    </div>
-</div>
 
 <footer>
     <div class="footer-content">
@@ -64,3 +61,14 @@
         </div>
     </div>
 </footer>
+<body>
+<script>
+    function onloaded() {
+        listScoresUsers();
+    }
+    window.onload = function() {
+        onloaded();
+    }
+</script>
+</body>
+</html>

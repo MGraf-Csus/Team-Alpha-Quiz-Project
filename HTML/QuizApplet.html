@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin Sign In</title>
-    <link rel="stylesheet" href="css.css">
-    <script type="module" src="accountManagement.js"></script>
+    <title>Quiz Home</title>
+    <link rel="stylesheet" href="../css.css">
+    <script type="module" src="../JavaScript/quizAppletScript.js"></script>
 </head>
 
 <header>
@@ -25,29 +25,28 @@
                 <li id="admin"><a href="AdminSign-in.html">Admin</a></li>
             </ul>
         </div>
-        <div class="main-body" id="contact-body">
-            <h2 class="page-titles">Edit user:</h2>
-            <ul>
-                <li><h3 id="username"></h3></li>
+        <div class="main-body">
+            <h2 id="quiz-home-page-title" class="page-titles">Quiz Home:</h2>     
+            <h3 id="quiz-home-list-header">Select Quiz:</h3>
+            <!-- List of quizes to be taken -->
 
-                <li><label for="roleInput">Role:</label></li>
-                <li><input type="text" id="roleInput" name="password" placeholder="(Admin or Student)" required></li>
-
-                <li><label for="passwordInput">Change password:</label></li>
-                <li><input type="text" id="passwordInput" name="password" required></li>
-
-                <li><label for="passwordConfirmInput">Confirm new password:</label></li>
-                <li><input type="text" id="passwordConfirmInput" name="passwordConfirm" required></li>
-
-                <li><button type="button" onclick="editAccountData()">Save account changes</button></li>
-
-                <li><button type="button" onclick="deleteAccount()">Delete account</button></li>
-
-                <li><button type="button" onclick="window.location.href='ManageUser.html'">Go Back</button></li>
-            </ul>
         </div>
     </div>
 </section>
+
+<!-- Login For Quiz -->
+<div id="quiz-login">
+    <div id="quiz-login-bg">
+        <h3 style="margin-top: 0; text-align:center;">Sign In - Important: Once taking quiz DO NOT refresh page, or use forward and back arrows as this will auto submit the quiz</h3>
+        <input type="text" id="username-quiz-login" placeholder="Username" required>
+        <input type="password" id="password-quiz-login" placeholder="Password" required>
+        <div id="quiz-login-btn-ctr">
+            <button id="loginSubmit-quiz-login">Login</button>
+            <button id="loginSubmit-quiz-cancel">Cancel</button>
+        </div>
+
+    </div>
+</div>
 
 <footer>
     <div class="footer-content">
@@ -65,14 +64,3 @@
         </div>
     </div>
 </footer>
-<body>
-<script>
-    function onloaded() {
-        getUserData();
-    }
-    window.onload = function() {
-        onloaded();
-    }
-</script>
-</body>
-</html>

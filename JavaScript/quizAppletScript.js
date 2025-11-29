@@ -48,22 +48,26 @@ function renderSignInPopUp(quizId) {
         const passwordInput = document.getElementById("password-quiz-login");
         const username = usernameInput.value.trim();
         const password = passwordInput.value.trim();
+        let user = await service.getAccount(username);
+        if(user.role !== "admin") {
+            if (!username || !password) {
+                if (!username) usernameInput.classList.add("input-error");
+                else usernameInput.classList.remove("input-error");
+                if (!password) passwordInput.classList.add("input-error");
+                else passwordInput.classList.remove("input-error");
+                return;
+            } else {
+                usernameInput.classList.remove("input-error");
+                passwordInput.classList.remove("input-error");
+            }
 
-        if (!username || !password) {
-            if (!username) usernameInput.classList.add("input-error");
-            else usernameInput.classList.remove("input-error");
-            if (!password) passwordInput.classList.add("input-error");
-            else passwordInput.classList.remove("input-error");
-            return;
+            if (await service.signIn(username, password)) {
+                modal.style.display = "none";
+                window.location.href = window.location.href = `QuizTemplate.html?id=${encodeURIComponent(quizId)}&username=${encodeURIComponent(username)}`;
+            }
         }
         else {
-            usernameInput.classList.remove("input-error");
-            passwordInput.classList.remove("input-error");
-        }
-
-        if (await service.signIn(username, password)) {
-            modal.style.display = "none";
-            window.location.href = window.location.href = `QuizTemplate.html?id=${encodeURIComponent(quizId)}&username=${encodeURIComponent(username)}`;
+            alert("Cannot take quiz as an admin");
         }
     };
 

@@ -3,8 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Credits</title>
-    <link rel="stylesheet" href="css.css">
+    <title>Admin Sign In</title>
+    <link rel="stylesheet" href="../css.css">
+    <script type="module" src="../JavaScript/accountManagement.js"></script>
 </head>
 
 <header>   
@@ -24,21 +25,14 @@
                 <li id="admin"><a href="AdminSign-in.html">Admin</a></li>
             </ul>
         </div>
-        <div class="main-body" id="credits-body">
-            <h2 class="page-titles">Credits:</h2>
-                <h3>Project Manager:</h3>
-                    <h4>Michael Gipson</h4>
-                <h3>Analyst:</h3>
-                    <h4>Aman Galsinh</h4>
-                <h3>Designers:</h3>
-                    <h4>Zach Radaza</h4>
-                    <h4>Mustafa Khan</h4>
-                <h3>Programmers:</h3>
-                    <h4>David Huerta</h4>
-                    <h4>Michael Graf</h4>
-                    <h4>Jashwant Reddy Dongala</h4>
-                <h3>Quality Control:</h3>
-                    <h4>Jay Tolentino</h4>
+        <div class="main-body" id="contact-body">
+            <h2 class="page-titles">Admin Sign In:</h2>
+            <ul>
+                <li><label for="username">Username:</label><input type="text" id="username" name="username" placeholder="Enter your username"></li>
+                <li><label for="password">Password:</label><input type="password" id="password" name="password" placeholder="Enter your password"></li>
+                <li><input type="checkbox" onclick="passwordHidden()">Show Password</li>
+                <li><button type="button" id="sign-in-button" onclick="signIn()">Sign in</button></li>
+            </ul>
         </div>
     </div>
 </section>
