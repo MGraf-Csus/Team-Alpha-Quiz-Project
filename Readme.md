@@ -33,6 +33,8 @@ Run locally (quick)
 - Open locally: open `index.html` using a local server to open in a browser
   (This can be done using most IDE's, due to security changes with web browsers, javascript is no longer loaded when opening an html file.)
 
+- Main Admin Account (for editing users/quizzes): Username: Super / Password: password
+
 
 Firebase
 - `FirebaseHandler.js` contains helper logic to integrate with Firebase. To use Firebase services:
